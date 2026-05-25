@@ -44,20 +44,25 @@ async function getPost(slug: string): Promise<PostWithTags | null> {
     type PTRow = { tags: Tag | null };
     const tags: Tag[] = ((postTags ?? []) as PTRow[]).map((pt) => pt.tags).filter((t): t is Tag => t !== null);
     return { ...post, tags, author };
-  } catch {
+  } catch (err) {
+    console.error("[getPost] error for slug:", slug, err);
     return null;
   }
 }
 
 async function getComments(postId: string): Promise<Comment[]> {
-  const supabase = await createClient();
-  const { data } = await supabase
-    .from("comments")
-    .select("*")
-    .eq("post_id", postId)
-    .eq("status", "approved")
-    .order("created_at", { ascending: false });
-  return (data ?? []) as Comment[];
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from("comments")
+      .select("*")
+      .eq("post_id", postId)
+      .eq("status", "approved")
+      .order("created_at", { ascending: false });
+    return (data ?? []) as Comment[];
+  } catch {
+    return [];
+  }
 }
 
 export async function generateStaticParams() {
@@ -103,7 +108,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = await getPost(slug);
-  if (!post) notFound();
+  if (!post) {
+    console.log("[PostPage] notFound for slug:", slug);
+    notFound();
+  }
   const comments = await getComments(post.id);
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";

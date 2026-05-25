@@ -39,6 +39,10 @@ const nextConfig = {
         hostname: "*.gstatic.com",
       },
       {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+      },
+      {
         protocol: "http",
         hostname: "localhost",
       },

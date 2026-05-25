@@ -88,7 +88,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const postUrl = `${siteUrl}/${post.slug}`;
   const title = post.meta_title ?? post.title;
   const description = post.meta_description ?? post.excerpt?.slice(0, 160) ?? "";
-  const image = post.og_image_url ?? post.cover_image_url;
+  const image = post.og_image_url ?? post.cover_image_url
+    ?? `${siteUrl}/api/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
@@ -101,7 +102,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       publishedTime: post.published_at ?? undefined,
       modifiedTime: post.updated_at,
-      images: image ? [{ url: image, alt: post.title }] : [],
+      images: [{ url: image, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
     },
   };
 }

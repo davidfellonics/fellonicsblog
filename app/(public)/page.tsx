@@ -7,12 +7,35 @@ import type { PostWithTags, Post, Tag, Profile } from "@/types";
 
 export const revalidate = 60;
 
+const siteUrlForMeta = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 export const metadata: Metadata = {
   title: "Fellonics — Exploring Geometry",
   description:
     "Exploring geometry — topology, tessellation, polyhedra, non-Euclidean geometry, sacred geometry, and mathematical art.",
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+    canonical: siteUrlForMeta,
+  },
+  openGraph: {
+    title: "Fellonics — Exploring Geometry",
+    description:
+      "Exploring geometry — topology, tessellation, polyhedra, non-Euclidean geometry, sacred geometry, and mathematical art.",
+    url: siteUrlForMeta,
+    type: "website",
+    images: [
+      {
+        url: `${siteUrlForMeta}/api/og?title=Fellonics%20%E2%80%94%20Exploring%20Geometry`,
+        width: 1200,
+        height: 630,
+        alt: "Fellonics — Exploring Geometry",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fellonics — Exploring Geometry",
+    description: "Exploring geometry — topology, tessellation, polyhedra, non-Euclidean geometry, sacred geometry, and mathematical art.",
+    images: [`${siteUrlForMeta}/api/og?title=Fellonics%20%E2%80%94%20Exploring%20Geometry`],
   },
 };
 

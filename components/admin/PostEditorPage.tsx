@@ -9,18 +9,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
 import { createClient } from "@/lib/supabase/client";
 import { generateSlug } from "@/lib/utils/generateSlug";
 import { calculateReadingTime } from "@/lib/utils/readingTime";
 import type { Post, Tag } from "@/types";
-import { X, Sparkles } from "lucide-react";
+import { X } from "lucide-react";
 
 const PostEditorComponent = dynamic(() => import("./PostEditor"), { ssr: false });
 
@@ -49,11 +42,6 @@ export default function PostEditorPage({ post, allTags, authorId }: PostEditorPa
   const [error, setError] = useState<string | null>(null);
   const [coverUploading, setCoverUploading] = useState(false);
 
-  // AI Draft
-  const [aiDialog, setAiDialog] = useState(false);
-  const [aiPrompt, setAiPrompt] = useState("");
-  const [aiLoading, setAiLoading] = useState(false);
-  const [aiDraft, setAiDraft] = useState("");
 
   function handleTitleChange(val: string) {
     setTitle(val);
@@ -166,39 +154,6 @@ export default function PostEditorPage({ post, allTags, authorId }: PostEditorPa
     router.refresh();
   }
 
-  async function handleAiDraft() {
-    setAiLoading(true);
-    setAiDraft("");
-
-    const res = await fetch("/api/ai-draft", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt: aiPrompt }),
-    });
-
-    if (!res.ok) { setAiLoading(false); setAiDraft("Error generating draft."); return; }
-
-    const reader = res.body?.getReader();
-    const decoder = new TextDecoder();
-    let full = "";
-
-    while (reader) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      const chunk = decoder.decode(value, { stream: true });
-      full += chunk;
-      setAiDraft(full);
-    }
-
-    setAiLoading(false);
-  }
-
-  function acceptAiDraft() {
-    setContent(`<p>${aiDraft.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br>")}</p>`);
-    setAiDialog(false);
-    setAiDraft("");
-    setAiPrompt("");
-  }
 
   return (
     <div className="flex gap-6 p-6 md:p-10 min-h-screen">
@@ -206,15 +161,6 @@ export default function PostEditorPage({ post, allTags, authorId }: PostEditorPa
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-xl font-bold font-sans">{isEdit ? "Edit Post" : "New Post"}</h1>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setAiDialog(true)}
-            className="gap-1.5"
-          >
-            <Sparkles size={14} />
-            Draft with AI
-          </Button>
         </div>
         <PostEditorComponent content={content} onChange={setContent} />
         {error && <p className="text-sm text-destructive mt-2">{error}</p>}
@@ -347,40 +293,6 @@ export default function PostEditorPage({ post, allTags, authorId }: PostEditorPa
         </div>
       </aside>
 
-      {/* AI Draft Dialog */}
-      <Dialog open={aiDialog} onOpenChange={setAiDialog}>
-        <DialogContent className="sm:max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>✦ Draft with AI</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-3">
-            <Label htmlFor="ai-prompt">Topic, angle, or outline</Label>
-            <Textarea
-              id="ai-prompt"
-              value={aiPrompt}
-              onChange={(e) => setAiPrompt(e.target.value)}
-              placeholder="e.g. Write a post about Penrose tiling and its connection to quasicrystals…"
-              rows={3}
-            />
-            <Button onClick={handleAiDraft} disabled={aiLoading || !aiPrompt.trim()}>
-              {aiLoading ? "Generating…" : "Generate draft"}
-            </Button>
-            {aiDraft && (
-              <div className="border border-[#e5e7eb] rounded p-3 max-h-64 overflow-y-auto text-sm font-serif whitespace-pre-wrap">
-                {aiDraft}
-              </div>
-            )}
-          </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => { setAiDialog(false); setAiDraft(""); setAiPrompt(""); }}>
-              Discard
-            </Button>
-            {aiDraft && (
-              <Button onClick={acceptAiDraft}>Accept Draft</Button>
-            )}
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

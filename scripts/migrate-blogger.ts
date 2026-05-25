@@ -3,6 +3,7 @@ import * as path from "path";
 import * as dotenv from "dotenv";
 import { XMLParser } from "fast-xml-parser";
 import { createClient } from "@supabase/supabase-js";
+import ws from "ws";
 
 dotenv.config({ path: path.resolve(__dirname, "../.env.local") });
 
@@ -17,7 +18,10 @@ if (!SUPABASE_URL || !SUPABASE_KEY || !AUTHOR_ID) {
   process.exit(1);
 }
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+  realtime: { transport: ws as any },
+});
 
 function stripHtml(html: string): string {
   return html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
@@ -55,23 +59,19 @@ function getReadingTime(html: string): number {
   return Math.max(1, Math.ceil(wordCount / 200));
 }
 
-function getOriginalSlug(alternateLink: string | { href: string } | undefined): string {
-  if (!alternateLink) return "";
-  const href = typeof alternateLink === "string" ? alternateLink : alternateLink.href;
-  if (!href) return "";
-  const match = href.match(/\/([^/]+?)(?:\.html)?$/);
-  return match?.[1] ? makeSlug(match[1]) : "";
-}
-
+// Google Takeout 2018+ format uses blogger:type/blogger:status/blogger:filename
 interface BloggerEntry {
   title?: string | { "#text": string };
-  "content"?: string | { "#text": string };
+  content?: string | { "#text": string };
   published?: string;
   updated?: string;
-  link?: Array<{ rel?: string; href?: string }> | { rel?: string; href?: string };
   category?: Array<{ scheme?: string; term?: string }> | { scheme?: string; term?: string };
+  "blogger:type"?: string;
+  "blogger:status"?: string;
+  "blogger:filename"?: string;
+  // Legacy format fields (kept for compatibility)
+  link?: Array<{ rel?: string; href?: string }> | { rel?: string; href?: string };
   "app:control"?: { "app:draft"?: string };
-  id?: string;
 }
 
 function getTextContent(val: unknown): string {
@@ -82,6 +82,11 @@ function getTextContent(val: unknown): string {
 }
 
 function isPost(entry: BloggerEntry): boolean {
+  // New Takeout format: blogger:type = "POST"
+  if (entry["blogger:type"]) {
+    return entry["blogger:type"] === "POST";
+  }
+  // Legacy format: category with kind#post
   const categories = Array.isArray(entry.category)
     ? entry.category
     : entry.category
@@ -95,7 +100,29 @@ function isPost(entry: BloggerEntry): boolean {
 }
 
 function isDraft(entry: BloggerEntry): boolean {
+  // New Takeout format: blogger:status = "LIVE" for published, anything else is draft
+  if (entry["blogger:status"]) {
+    return entry["blogger:status"] !== "LIVE";
+  }
+  // Legacy format: app:control/app:draft = "yes"
   return entry["app:control"]?.["app:draft"] === "yes";
+}
+
+function getSlugFromEntry(entry: BloggerEntry): string {
+  // New Takeout format: blogger:filename = "/2026/02/my-post-title.html"
+  const filename = entry["blogger:filename"];
+  if (filename && typeof filename === "string") {
+    const match = filename.match(/\/([^/]+?)(?:\.html)?$/);
+    if (match?.[1]) return match[1];
+  }
+  // Legacy format: link[rel=alternate]
+  const links = Array.isArray(entry.link) ? entry.link : entry.link ? [entry.link] : [];
+  const href = links.find((l) => l.rel === "alternate")?.href;
+  if (href) {
+    const match = href.match(/\/([^/]+?)(?:\.html)?$/);
+    if (match?.[1]) return makeSlug(match[1]);
+  }
+  return "";
 }
 
 function getLabels(entry: BloggerEntry): string[] {
@@ -104,20 +131,18 @@ function getLabels(entry: BloggerEntry): string[] {
     : entry.category
     ? [entry.category]
     : [];
-  return categories
-    .filter(
-      (c) =>
-        c.scheme !== "http://schemas.google.com/g/2005#kind" &&
-        !c.term?.includes("blogger.com/atom/ns#") &&
-        !c.term?.includes("schemas.google.com") &&
-        c.term
-    )
-    .map((c) => c.term!);
-}
 
-function getAlternateLink(entry: BloggerEntry): string | undefined {
-  const links = Array.isArray(entry.link) ? entry.link : entry.link ? [entry.link] : [];
-  return links.find((l) => l.rel === "alternate")?.href;
+  return categories
+    .filter((c) => {
+      if (!c.term) return false;
+      // New format: scheme is blog-specific tag like "tag:blogger.com,1999:blog-..."
+      // Old format: scheme is google schemas URL — filter out kind# entries
+      if (c.scheme?.includes("schemas.google.com/g/2005#kind")) return false;
+      if (c.term?.includes("schemas.google.com")) return false;
+      if (c.term?.includes("blogger.com/atom/ns#")) return false;
+      return true;
+    })
+    .map((c) => c.term!);
 }
 
 async function upsertTag(name: string): Promise<string | null> {
@@ -134,7 +159,6 @@ async function upsertTag(name: string): Promise<string | null> {
 async function migrate() {
   if (!fs.existsSync(EXPORT_PATH)) {
     console.error(`Export file not found at: ${EXPORT_PATH}`);
-    console.error("Place your Blogger XML export at scripts/data/blogger-export.xml");
     process.exit(1);
   }
 
@@ -157,7 +181,6 @@ async function migrate() {
   let skipped = 0;
   let errors = 0;
 
-  // Process in batches
   for (let i = 0; i < posts.length; i += BATCH_SIZE) {
     const batch = posts.slice(i, i + BATCH_SIZE);
 
@@ -168,9 +191,8 @@ async function migrate() {
       const published = entry.published ?? new Date().toISOString();
       const updated = entry.updated ?? published;
       const labels = getLabels(entry);
-      const alternateLink = getAlternateLink(entry);
 
-      let slug = getOriginalSlug(alternateLink) || makeSlug(title);
+      let slug = getSlugFromEntry(entry) || makeSlug(title);
       if (!slug) slug = `post-${Date.now()}`;
 
       // Check for duplicate slug
@@ -215,7 +237,6 @@ async function migrate() {
           continue;
         }
 
-        // Handle tags
         for (const label of labels) {
           const tagId = await upsertTag(label);
           if (tagId) {
@@ -239,7 +260,7 @@ async function migrate() {
     }
   }
 
-  console.log(`\nMigration complete. ${imported} posts imported. ${skipped} skipped. ${errors} errors.`);
+  console.log(`\nMigration complete. ${imported} imported. ${skipped} skipped. ${errors} errors.`);
 }
 
 migrate().catch((err) => {

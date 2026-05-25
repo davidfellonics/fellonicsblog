@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/server";
 import AuthorBio from "@/components/public/AuthorBio";
 import SocialShareButtons from "@/components/public/SocialShareButtons";
 import CommentSection from "@/components/public/CommentSection";
@@ -19,7 +19,7 @@ interface PageProps {
 
 async function getPost(slug: string): Promise<PostWithTags | null> {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     const { data: rawPost } = await supabase
       .from("posts")
       .select("*")
@@ -53,7 +53,7 @@ async function getPost(slug: string): Promise<PostWithTags | null> {
 
 async function getComments(postId: string): Promise<Comment[]> {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     const { data } = await supabase
       .from("comments")
       .select("*")
@@ -68,7 +68,7 @@ async function getComments(postId: string): Promise<Comment[]> {
 
 export async function generateStaticParams() {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     const { data } = await supabase
       .from("posts")
       .select("slug")

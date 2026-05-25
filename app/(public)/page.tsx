@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/server";
 import PostList from "@/components/public/PostList";
 import GeometricPattern from "@/components/shared/GeometricPattern";
 import type { PostWithTags, Post, Tag, Profile } from "@/types";
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 async function getPosts(): Promise<PostWithTags[]> {
   try {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
 
   const { data: rawPosts, error } = await supabase
     .from("posts")
@@ -54,7 +54,7 @@ async function getPosts(): Promise<PostWithTags[]> {
 
 async function getAuthor(): Promise<Profile | null> {
   try {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data } = await supabase
     .from("profiles")
     .select("*")

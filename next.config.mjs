@@ -27,6 +27,18 @@ const nextConfig = {
         hostname: "*.blogspot.com",
       },
       {
+        protocol: "https",
+        hostname: "*.twimg.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.grokusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.gstatic.com",
+      },
+      {
         protocol: "http",
         hostname: "localhost",
       },

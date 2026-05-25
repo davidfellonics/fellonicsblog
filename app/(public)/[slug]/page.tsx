@@ -18,31 +18,35 @@ interface PageProps {
 }
 
 async function getPost(slug: string): Promise<PostWithTags | null> {
-  const supabase = await createClient();
-  const { data: rawPost } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("slug", slug)
-    .eq("status", "published")
-    .single();
+  try {
+    const supabase = await createClient();
+    const { data: rawPost } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("slug", slug)
+      .eq("status", "published")
+      .single();
 
-  if (!rawPost) return null;
+    if (!rawPost) return null;
 
-  const post = rawPost as Post;
+    const post = rawPost as Post;
 
-  const { data: postTags } = await supabase
-    .from("post_tags")
-    .select("tags(*)")
-    .eq("post_id", post.id);
+    const { data: postTags } = await supabase
+      .from("post_tags")
+      .select("tags(*)")
+      .eq("post_id", post.id);
 
-  const { data: rawAuthor } = post.author_id
-    ? await supabase.from("profiles").select("*").eq("id", post.author_id).single()
-    : { data: null };
+    const { data: rawAuthor } = post.author_id
+      ? await supabase.from("profiles").select("*").eq("id", post.author_id).single()
+      : { data: null };
 
-  const author = rawAuthor as Profile | null;
-  type PTRow = { tags: Tag | null };
-  const tags: Tag[] = ((postTags ?? []) as PTRow[]).map((pt) => pt.tags).filter((t): t is Tag => t !== null);
-  return { ...post, tags, author };
+    const author = rawAuthor as Profile | null;
+    type PTRow = { tags: Tag | null };
+    const tags: Tag[] = ((postTags ?? []) as PTRow[]).map((pt) => pt.tags).filter((t): t is Tag => t !== null);
+    return { ...post, tags, author };
+  } catch {
+    return null;
+  }
 }
 
 async function getComments(postId: string): Promise<Comment[]> {
@@ -98,12 +102,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
-  const [post, comments] = await Promise.all([
-    getPost(slug),
-    getPost(slug).then((p) => (p ? getComments(p.id) : [])),
-  ]);
-
+  const post = await getPost(slug);
   if (!post) notFound();
+  const comments = await getComments(post.id);
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   const postUrl = `${siteUrl}/${post.slug}`;

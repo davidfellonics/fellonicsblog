@@ -45,7 +45,8 @@ async function getPost(slug: string): Promise<PostWithTags | null> {
     const tags: Tag[] = ((postTags ?? []) as PTRow[]).map((pt) => pt.tags).filter((t): t is Tag => t !== null);
     return { ...post, tags, author };
   } catch (err) {
-    console.error("[getPost] error for slug:", slug, err);
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("[getPost-fail]", msg);
     return null;
   }
 }

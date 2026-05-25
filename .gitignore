@@ -27,6 +27,10 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
+
+# Migration data (never commit Blogger export)
+scripts/data/
 
 # vercel
 .vercel

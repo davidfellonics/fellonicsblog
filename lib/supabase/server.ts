@@ -35,26 +35,11 @@ export function createPublicClient() {
   );
 }
 
-export async function createServiceClient() {
-  const cookieStore = await cookies();
-  return createServerClient<Database>(
+// Service-role client: uses the plain JS client (NOT the SSR cookie client)
+// so the service role key correctly bypasses all RLS policies.
+export function createServiceClient() {
+  return createSupabaseClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return cookieStore.getAll();
-        },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
-            );
-          } catch {
-            // Server Component context
-          }
-        },
-      },
-    }
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
 }

@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
   }
 
   // 3. Upload using the service-role client (bypasses storage RLS)
-  const serviceSupabase = await createServiceClient();
+  const serviceSupabase = createServiceClient();
   const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "-");
   const fileName = `covers/${Date.now()}-${safeName}`;
 

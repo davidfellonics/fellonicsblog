@@ -27,6 +27,15 @@ export async function POST(request: NextRequest) {
 
   // 3. Upload using the service-role client (bypasses storage RLS)
   const serviceSupabase = createServiceClient();
+
+  // Ensure the bucket exists and is public (idempotent — safe to call every time)
+  await serviceSupabase.storage
+    .createBucket("post-images", { public: true })
+    .catch(() => {
+      // Bucket already exists — update it to be public just in case
+      return serviceSupabase.storage.updateBucket("post-images", { public: true });
+    });
+
   const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "-");
   const fileName = `covers/${Date.now()}-${safeName}`;
 

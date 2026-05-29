@@ -146,12 +146,13 @@ export default function PostEditorPage({ post, allTags, authorId }: PostEditorPa
       }
     }
 
-    // Trigger ISR revalidation
-    if (publish) {
+    // Trigger ISR revalidation whenever the post is (or was) published
+    const wasPublished = post?.status === "published";
+    if (publish || wasPublished) {
       await fetch("/api/revalidate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ secret: process.env.NEXT_PUBLIC_REVALIDATION_SECRET, slug }),
+        body: JSON.stringify({ slug }),
       }).catch(() => {});
     }
 

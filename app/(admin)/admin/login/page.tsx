@@ -39,7 +39,7 @@ export default function AdminLoginPage() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
-      <p className="text-[22px] font-bold font-sans text-[#111111] mb-8">Fellonics</p>
+      <p className="text-[22px] font-bold font-sans text-[#111111] mb-8">FFellonics</p>
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Admin Login</CardTitle>

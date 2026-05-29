@@ -17,11 +17,11 @@ const lora = Lora({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s — Fellonics",
-    default: "Fellonics — Exploring Geometry",
+    template: "%s — FFellonics",
+    default: "FFellonics — Exploring Geometry",
   },
   description:
-    "Fellonics is a blog exploring geometry — topology, tessellation, polyhedra, non-Euclidean geometry, sacred geometry, and mathematical art.",
+    "FFellonics is a blog exploring geometry — topology, tessellation, polyhedra, non-Euclidean geometry, sacred geometry, and mathematical art.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   icons: {
     icon: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     apple: "/icon.svg",
   },
   openGraph: {
-    siteName: "Fellonics",
+    siteName: "FFellonics",
     type: "website",
   },
   robots: {

@@ -4,7 +4,7 @@ export const runtime = "edge";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const title = searchParams.get("title") ?? "Fellonics";
+  const title = searchParams.get("title") ?? "FFellonics";
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ffell.com";
 
   return new ImageResponse(
@@ -86,7 +86,7 @@ export async function GET(request: Request) {
               <circle cx="66" cy="22.3" r="16" fill="none" stroke="#1a3a5c" strokeWidth="5" />
             </svg>
             <span style={{ fontSize: "28px", color: "#1a3a5c", fontWeight: 700, letterSpacing: "-0.5px" }}>
-              Fellonics
+              FFellonics
             </span>
           </div>
 

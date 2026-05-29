@@ -10,32 +10,32 @@ export const revalidate = 60;
 const siteUrlForMeta = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export const metadata: Metadata = {
-  title: "Fellonics — Exploring Geometry",
+  title: "FFellonics — Exploring Geometry",
   description:
     "Exploring geometry — topology, tessellation, polyhedra, non-Euclidean geometry, sacred geometry, and mathematical art.",
   alternates: {
     canonical: siteUrlForMeta,
   },
   openGraph: {
-    title: "Fellonics — Exploring Geometry",
+    title: "FFellonics — Exploring Geometry",
     description:
       "Exploring geometry — topology, tessellation, polyhedra, non-Euclidean geometry, sacred geometry, and mathematical art.",
     url: siteUrlForMeta,
     type: "website",
     images: [
       {
-        url: `${siteUrlForMeta}/api/og?title=Fellonics%20%E2%80%94%20Exploring%20Geometry`,
+        url: `${siteUrlForMeta}/api/og?title=FFellonics%20%E2%80%94%20Exploring%20Geometry`,
         width: 1200,
         height: 630,
-        alt: "Fellonics — Exploring Geometry",
+        alt: "FFellonics — Exploring Geometry",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fellonics — Exploring Geometry",
+    title: "FFellonics — Exploring Geometry",
     description: "Exploring geometry — topology, tessellation, polyhedra, non-Euclidean geometry, sacred geometry, and mathematical art.",
-    images: [`${siteUrlForMeta}/api/og?title=Fellonics%20%E2%80%94%20Exploring%20Geometry`],
+    images: [`${siteUrlForMeta}/api/og?title=FFellonics%20%E2%80%94%20Exploring%20Geometry`],
   },
 };
 
@@ -116,7 +116,7 @@ export default async function HomePage() {
             </div>
           )}
           <h1 className="text-3xl sm:text-4xl font-bold font-sans text-[#111111] mb-3">
-            {author?.full_name ?? "Fellonics"}
+            {author?.full_name ?? "FFellonics"}
           </h1>
           <p className="text-[#6b7280] text-base sm:text-lg font-sans max-w-[480px] mx-auto">
             {author?.bio ?? "Exploring geometry — topology, tessellation, polyhedra, and mathematical art."}
@@ -136,12 +136,12 @@ export default async function HomePage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Blog",
-            name: "Fellonics",
+            name: "FFellonics",
             description: "Exploring geometry, one post at a time.",
             url: siteUrl,
             publisher: {
               "@type": "Organization",
-              name: "Fellonics",
+              name: "FFellonics",
             },
           }),
         }}

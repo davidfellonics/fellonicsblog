@@ -29,7 +29,7 @@ export default function AdminSidebar({ pendingComments = 0 }: AdminSidebarProps)
   return (
     <aside className="w-60 min-h-screen bg-white border-r border-[#e5e7eb] flex flex-col flex-shrink-0">
       <div className="px-5 py-5 border-b border-[#e5e7eb]">
-        <p className="font-bold font-sans text-[#111111] text-sm">Fellonics Admin</p>
+        <p className="font-bold font-sans text-[#111111] text-sm">FFellonics Admin</p>
       </div>
       <nav className="flex-1 py-4">
         {links.map(({ href, label, icon: Icon, badge }) => (

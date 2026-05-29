@@ -9,7 +9,7 @@ export default function NotFound() {
         href="/"
         className="text-[#1a3a5c] font-sans font-medium underline hover:no-underline"
       >
-        Back to Fellonics
+        Back to FFellonics
       </Link>
     </div>
   );

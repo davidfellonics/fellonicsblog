@@ -136,10 +136,10 @@ export default async function PostPage({ params }: PageProps) {
     image: post.og_image_url ?? post.cover_image_url ?? undefined,
     author: post.author
       ? { "@type": "Person", name: post.author.full_name }
-      : { "@type": "Organization", name: "Fellonics" },
+      : { "@type": "Organization", name: "FFellonics" },
     publisher: {
       "@type": "Organization",
-      name: "Fellonics",
+      name: "FFellonics",
       url: siteUrl,
     },
   };

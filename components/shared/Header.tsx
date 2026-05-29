@@ -13,12 +13,6 @@ export default function Header() {
         </Link>
         <nav className="flex items-center gap-4">
           <Link
-            href="/about"
-            className="text-sm font-sans text-[#6b7280] hover:text-[#111111] transition-colors"
-          >
-            About
-          </Link>
-          <Link
             href="/#search"
             aria-label="Search posts"
             className="text-[#6b7280] hover:text-[#1a3a5c] transition-colors"

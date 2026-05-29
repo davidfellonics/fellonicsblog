@@ -13,6 +13,7 @@ const lora = Lora({
   subsets: ["latin"],
   variable: "--font-lora",
   display: "swap",
+  preload: false, // body-text font — not on critical path, avoid render-blocking preload
 });
 
 export const metadata: Metadata = {

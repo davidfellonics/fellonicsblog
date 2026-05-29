@@ -28,7 +28,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createClient } from "@/lib/supabase/client";
 import { useState, useEffect, useCallback } from "react";
 
 interface PostEditorProps {
@@ -77,23 +76,22 @@ export default function PostEditor({ content, onChange }: PostEditorProps) {
     if (!file || !editor) return;
 
     setImageUploading(true);
-    const supabase = createClient();
-    const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "-")}`;
-
-    const { data, error } = await supabase.storage
-      .from("post-images")
-      .upload(fileName, file, { upsert: false });
-
-    setImageUploading(false);
-
-    if (error || !data) {
-      alert("Image upload failed. Please try again.");
-      return;
+    try {
+      const form = new FormData();
+      form.append("file", file);
+      const res = await fetch("/api/upload-cover", { method: "POST", body: form });
+      const json = await res.json();
+      if (!res.ok || !json.url) {
+        alert(`Image upload failed: ${json.error ?? res.statusText}`);
+        return;
+      }
+      editor.chain().focus().setImage({ src: json.url, alt: file.name }).run();
+      e.target.value = "";
+    } catch (err) {
+      alert(`Image upload failed: ${err instanceof Error ? err.message : String(err)}`);
+    } finally {
+      setImageUploading(false);
     }
-
-    const { data: { publicUrl } } = supabase.storage.from("post-images").getPublicUrl(data.path);
-    editor.chain().focus().setImage({ src: publicUrl, alt: file.name }).run();
-    e.target.value = "";
   }
 
   if (!editor) return null;

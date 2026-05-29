@@ -54,16 +54,22 @@ export default function PostEditorPage({ post, allTags, authorId }: PostEditorPa
     const file = e.target.files?.[0];
     if (!file) return;
     setCoverUploading(true);
-    const supabase = createClient();
-    const fileName = `covers/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "-")}`;
-    const { data, error: uploadError } = await supabase.storage
-      .from("post-images")
-      .upload(fileName, file, { upsert: false });
-    setCoverUploading(false);
-    if (uploadError || !data) { alert("Cover upload failed."); return; }
-    const { data: { publicUrl } } = supabase.storage.from("post-images").getPublicUrl(data.path);
-    setCoverImageUrl(publicUrl);
-    e.target.value = "";
+    try {
+      const form = new FormData();
+      form.append("file", file);
+      const res = await fetch("/api/upload-cover", { method: "POST", body: form });
+      const json = await res.json();
+      if (!res.ok || !json.url) {
+        alert(`Cover upload failed: ${json.error ?? res.statusText}`);
+        return;
+      }
+      setCoverImageUrl(json.url);
+      e.target.value = "";
+    } catch (err) {
+      alert(`Cover upload failed: ${err instanceof Error ? err.message : String(err)}`);
+    } finally {
+      setCoverUploading(false);
+    }
   }
 
   async function addTag(tagName: string) {

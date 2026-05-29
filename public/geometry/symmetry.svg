@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <rect width="800" height="600" fill="#f0f4f8"/>
+  <g transform="translate(400,300)" stroke="#1a3a5c" stroke-width="2" fill="none">
+    <!-- Six-fold rotational symmetry — snowflake / wallpaper p6m pattern -->
+    <!-- Outer ring of circles -->
+    <circle cx="0" cy="0" r="220" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <circle cx="0" cy="0" r="140" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <circle cx="0" cy="0" r="60" stroke-width="2"/>
+    <!-- 6 radial arms -->
+    <line x1="0" y1="0" x2="0" y2="-220"/>
+    <line x1="0" y1="0" x2="0" y2="220"/>
+    <line x1="0" y1="0" x2="190.5" y2="-110"/>
+    <line x1="0" y1="0" x2="-190.5" y2="-110"/>
+    <line x1="0" y1="0" x2="190.5" y2="110"/>
+    <line x1="0" y1="0" x2="-190.5" y2="110"/>
+    <!-- Inner decorative hexagon -->
+    <polygon points="0,-60 52,-30 52,30 0,60 -52,30 -52,-30" stroke-width="2"/>
+    <!-- Outer decorative hexagon -->
+    <polygon points="0,-140 121.2,-70 121.2,70 0,140 -121.2,70 -121.2,-70" stroke-width="1.5"/>
+    <!-- Connecting arcs at 60° points on outer ring -->
+    <circle cx="0" cy="-140" r="18" fill="#dbe8f4" stroke-width="2"/>
+    <circle cx="121.2" cy="-70" r="18" fill="#dbe8f4" stroke-width="2"/>
+    <circle cx="121.2" cy="70" r="18" fill="#dbe8f4" stroke-width="2"/>
+    <circle cx="0" cy="140" r="18" fill="#dbe8f4" stroke-width="2"/>
+    <circle cx="-121.2" cy="70" r="18" fill="#dbe8f4" stroke-width="2"/>
+    <circle cx="-121.2" cy="-70" r="18" fill="#dbe8f4" stroke-width="2"/>
+    <!-- Centre point -->
+    <circle cx="0" cy="0" r="8" fill="#1a3a5c" stroke="none"/>
+  </g>
+</svg>

@@ -7,9 +7,11 @@ import { formatDate } from "@/lib/utils/formatDate";
 
 interface PostCardProps {
   post: PostWithTags;
+  /** Set true for the first visible card — removes lazy-load to improve LCP */
+  priority?: boolean;
 }
 
-export default function PostCard({ post }: PostCardProps) {
+export default function PostCard({ post, priority = false }: PostCardProps) {
   return (
     <article className="border border-[#e5e7eb] rounded-lg overflow-hidden group">
       <Link href={`/${post.slug}`} className="block">
@@ -20,7 +22,8 @@ export default function PostCard({ post }: PostCardProps) {
               alt={post.title}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 430px"
+              priority={priority}
             />
           ) : (
             <div className="w-full h-full bg-[#f0f4f8] relative overflow-hidden">

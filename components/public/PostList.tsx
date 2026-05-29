@@ -45,8 +45,8 @@ export default function PostList({ posts }: PostListProps) {
         <p className="text-[#6b7280] text-center py-12">No posts found.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {paginated.map((post) => (
-            <PostCard key={post.id} post={post} />
+          {paginated.map((post, i) => (
+            <PostCard key={post.id} post={post} priority={page === 1 && i < 2} />
           ))}
         </div>
       )}

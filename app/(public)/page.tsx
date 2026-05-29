@@ -5,7 +5,7 @@ import PostList from "@/components/public/PostList";
 import GeometricPattern from "@/components/shared/GeometricPattern";
 import type { PostWithTags, Post, Tag, Profile } from "@/types";
 
-export const revalidate = 60;
+export const revalidate = 3600; // 1 hour — posts don't change every minute
 
 const siteUrlForMeta = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 

@@ -11,7 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { formatDate, formatDateISO } from "@/lib/utils/formatDate";
 import type { PostWithTags, Comment, Post, Profile, Tag } from "@/types";
 
-export const revalidate = 60;
+export const revalidate = 3600; // 1 hour — post content rarely changes
 
 interface PageProps {
   params: Promise<{ slug: string }>;

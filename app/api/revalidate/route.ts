@@ -3,19 +3,24 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
 export async function POST(request: NextRequest) {
-  // Verify caller is an authenticated admin — no need for a shared secret
-  const authSupabase = await createClient();
-  const { data: { user }, error } = await authSupabase.auth.getUser();
-  if (error || !user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   const body = await request.json().catch(() => ({})) as { slug?: string };
 
-  revalidatePath("/");
-  if (body.slug) {
-    revalidatePath(`/${body.slug}`);
+  // Accept EITHER an authenticated browser session OR the service-role key
+  // in the Authorization header (used by the /new-blog-post CLI skill).
+  const authHeader = request.headers.get("authorization") ?? "";
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const hasServiceKey = !!serviceKey && authHeader === `Bearer ${serviceKey}`;
+
+  if (!hasServiceKey) {
+    const authSupabase = await createClient();
+    const { data: { user } } = await authSupabase.auth.getUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
   }
+
+  revalidatePath("/");
+  if (body.slug) revalidatePath(`/${body.slug}`);
 
   return NextResponse.json({ revalidated: true });
 }

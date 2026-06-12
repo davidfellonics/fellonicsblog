@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import PostCard from "./PostCard";
 import SearchBar from "./SearchBar";
-import { Button } from "@/components/ui/button";
 import type { PostWithTags } from "@/types";
 
 const POSTS_PER_PAGE = 12;
@@ -35,14 +34,18 @@ export default function PostList({ posts }: PostListProps) {
     setPage(1);
   }
 
+  const sectionLabel = query.trim() ? `Results for "${query}"` : "Latest Essays";
+
   return (
     <section>
-      <div id="search" className="mb-8">
+      {/* Section header */}
+      <div id="search" className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-[#ddd5c8]">
+        <h2 className="font-serif text-2xl text-[#0f2240] tracking-tight">{sectionLabel}</h2>
         <SearchBar value={query} onChange={handleSearch} />
       </div>
 
       {paginated.length === 0 ? (
-        <p className="text-[#6b7280] text-center py-12">No posts found.</p>
+        <p className="font-serif italic text-[#7c6f64] text-center py-12">No essays found.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {paginated.map((post, i) => (
@@ -52,26 +55,24 @@ export default function PostList({ posts }: PostListProps) {
       )}
 
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-3 mt-10">
-          <Button
-            variant="outline"
-            size="sm"
+        <div className="flex justify-center items-center gap-6 mt-12">
+          <button
             disabled={page <= 1}
             onClick={() => setPage((p) => p - 1)}
+            className="text-sm font-sans tracking-wider uppercase text-[#7c6f64] hover:text-[#0f2240] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
-            Previous
-          </Button>
-          <span className="text-sm text-[#6b7280]">
-            Page {page} of {totalPages}
+            ← Previous
+          </button>
+          <span className="font-serif text-sm text-[#7c6f64]">
+            {page} / {totalPages}
           </span>
-          <Button
-            variant="outline"
-            size="sm"
+          <button
             disabled={page >= totalPages}
             onClick={() => setPage((p) => p + 1)}
+            className="text-sm font-sans tracking-wider uppercase text-[#7c6f64] hover:text-[#0f2240] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
-            Next
-          </Button>
+            Next →
+          </button>
         </div>
       )}
     </section>

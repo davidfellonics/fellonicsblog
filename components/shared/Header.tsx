@@ -3,11 +3,11 @@ import { Search } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-[#e5e7eb]">
-      <div className="max-w-[860px] mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+    <header className="sticky top-0 z-40 bg-[#f9f6f2]/95 backdrop-blur-sm border-b border-[#ddd5c8]">
+      <div className="mx-4 sm:mx-[100px] h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="text-[22px] font-bold font-sans text-[#111111] tracking-tight hover:text-[#1a3a5c] transition-colors"
+          className="font-serif text-[22px] text-[#0f2240] tracking-tight hover:text-[#b8862a] transition-colors duration-200"
         >
           FFellonics
         </Link>
@@ -15,7 +15,7 @@ export default function Header() {
           <Link
             href="/#search"
             aria-label="Search posts"
-            className="text-[#6b7280] hover:text-[#1a3a5c] transition-colors"
+            className="text-[#7c6f64] hover:text-[#0f2240] transition-colors duration-200"
           >
             <Search size={18} />
           </Link>

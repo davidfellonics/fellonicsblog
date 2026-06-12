@@ -6,7 +6,6 @@ import AuthorBio from "@/components/public/AuthorBio";
 import SocialShareButtons from "@/components/public/SocialShareButtons";
 import CommentSection from "@/components/public/CommentSection";
 import CommentForm from "@/components/public/CommentForm";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { formatDate, formatDateISO } from "@/lib/utils/formatDate";
 import type { PostWithTags, Comment, Post, Profile, Tag } from "@/types";
@@ -146,54 +145,58 @@ export default async function PostPage({ params }: PageProps) {
 
   return (
     <>
-      <article className="max-w-[680px] mx-auto px-4 sm:px-6 py-10">
+      <article className="max-w-[680px] mx-auto px-4 sm:px-6 py-14">
         {/* Cover image */}
         {post.cover_image_url && (
-          <div className="relative w-full aspect-video max-w-[860px] mx-auto mb-8 -mx-4 sm:-mx-6 md:mx-auto">
+          <div className="relative w-full aspect-video mb-10 rounded-sm overflow-hidden">
             <Image
               src={post.cover_image_url}
               alt={post.title}
               fill
-              className="object-cover rounded-lg"
+              className="object-cover"
               priority
               sizes="(max-width: 860px) 100vw, 860px"
             />
           </div>
         )}
 
+        {/* Tags above title */}
+        {post.tags.length > 0 && (
+          <div className="flex flex-wrap gap-x-3 text-[10px] uppercase tracking-widest text-[#b8862a] mb-4">
+            {post.tags.map((tag) => (
+              <span key={tag.id}>{tag.name}</span>
+            ))}
+          </div>
+        )}
+
         {/* Title */}
-        <h1 className="text-4xl font-bold font-sans text-[#111111] leading-tight mb-4">
+        <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-5">
           {post.title}
         </h1>
 
+        {/* Gold rule */}
+        <div className="w-10 h-[1px] bg-[#b8862a] mb-5" />
+
         {/* Meta row */}
-        <div className="flex flex-wrap items-center gap-2 text-sm text-[#6b7280] mb-6">
+        <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-widest text-[#7c6f64] mb-8">
           {post.published_at && (
             <time dateTime={post.published_at}>{formatDate(post.published_at)}</time>
           )}
           {post.reading_time_minutes && (
-            <>
-              <span>·</span>
-              <span>{post.reading_time_minutes} min read</span>
-            </>
+            <span>· {post.reading_time_minutes} min read</span>
           )}
-          {post.tags.map((tag) => (
-            <Badge key={tag.id} className="bg-[#f0f4f8] text-[#1a3a5c] border-0 text-xs">
-              {tag.name}
-            </Badge>
-          ))}
         </div>
 
         {/* Author bio */}
         {post.author && (
-          <div className="mb-8">
+          <div className="mb-10 pb-8 border-b border-[#ddd5c8]">
             <AuthorBio author={post.author} />
           </div>
         )}
 
         {/* Post body */}
         <div
-          className="prose prose-lg max-w-none font-serif text-[#111111] prose-headings:font-sans prose-a:text-[#1a3a5c] prose-blockquote:border-[#1a3a5c] prose-blockquote:text-[#6b7280]"
+          className="prose prose-lg max-w-none font-serif text-[#1a1614] prose-headings:font-sans prose-headings:text-[#0f2240] prose-a:text-[#0f2240] prose-a:underline-offset-2 prose-blockquote:border-[#b8862a] prose-blockquote:text-[#7c6f64] prose-strong:text-[#0f2240]"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
 

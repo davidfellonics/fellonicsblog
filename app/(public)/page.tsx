@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { createPublicClient } from "@/lib/supabase/server";
 import PostList from "@/components/public/PostList";
-import GeometricPattern from "@/components/shared/GeometricPattern";
 import type { PostWithTags, Post, Tag, Profile } from "@/types";
 
 export const revalidate = 3600; // 1 hour — posts don't change every minute
@@ -96,30 +95,27 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-[#e5e7eb]">
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <GeometricPattern className="w-full h-full" />
-        </div>
-        <div className="relative max-w-[680px] mx-auto px-4 sm:px-6 py-20 text-center">
-          {author?.avatar_url && (
+      <section className="border-b border-[#ddd5c8]">
+        <div className="mx-4 sm:mx-[100px] py-20 text-center">
+          {author?.avatar_url ? (
             <Image
               src={author.avatar_url}
               alt={author.full_name}
-              width={64}
-              height={64}
-              className="rounded-full mx-auto mb-5 object-cover w-16 h-16"
+              width={80}
+              height={80}
+              className="rounded-full mx-auto mb-6 object-cover w-20 h-20 ring-2 ring-[#b8862a] ring-offset-4 ring-offset-[#f9f6f2]"
             />
-          )}
-          {!author?.avatar_url && (
-            <div className="w-16 h-16 rounded-full bg-[#f0f4f8] mx-auto mb-5 flex items-center justify-center border border-[#e5e7eb]">
-              <span className="text-[#1a3a5c] font-bold text-xl font-sans">F</span>
+          ) : (
+            <div className="w-20 h-20 rounded-full bg-[#f0ebe2] mx-auto mb-6 flex items-center justify-center ring-2 ring-[#b8862a] ring-offset-4 ring-offset-[#f9f6f2]">
+              <span className="font-serif text-[#0f2240] text-2xl">F</span>
             </div>
           )}
-          <h1 className="text-3xl sm:text-4xl font-bold font-sans text-[#111111] mb-3">
+          <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-5">
             {author?.full_name ?? "FFellonics"}
           </h1>
-          <p className="text-[#6b7280] text-base sm:text-lg font-sans max-w-[480px] mx-auto">
-            {author?.bio ?? "Exploring geometry — topology, tessellation, polyhedra, and mathematical art."}
+          <div className="w-10 h-[1px] bg-[#b8862a] mx-auto mb-5" />
+          <p className="font-serif italic text-[#7c6f64] text-lg sm:text-xl max-w-[540px] mx-auto leading-relaxed">
+            {author?.bio ?? "A journal of geometric thought — topology, polyhedra, tessellation, and the mathematics of form."}
           </p>
         </div>
       </section>

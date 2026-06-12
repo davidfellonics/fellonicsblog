@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
 import GeometricPattern from "@/components/shared/GeometricPattern";
 import type { PostWithTags } from "@/types";
 import { formatDate } from "@/lib/utils/formatDate";
@@ -13,7 +12,7 @@ interface PostCardProps {
 
 export default function PostCard({ post, priority = false }: PostCardProps) {
   return (
-    <article className="border border-[#e5e7eb] rounded-lg overflow-hidden group">
+    <article className="bg-white border border-[#ddd5c8] rounded-sm overflow-hidden group hover:shadow-lg transition-shadow duration-300">
       <Link href={`/${post.slug}`} className="block">
         <div className="relative w-full aspect-video">
           {post.cover_image_url ? (
@@ -22,41 +21,36 @@ export default function PostCard({ post, priority = false }: PostCardProps) {
               alt={post.title}
               fill
               className="object-cover"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 430px"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
               priority={priority}
             />
           ) : (
-            <div className="w-full h-full bg-[#f0f4f8] relative overflow-hidden">
-              <GeometricPattern className="absolute inset-0 w-full h-full opacity-80" />
+            <div className="w-full h-full bg-[#f0ebe2] relative overflow-hidden">
+              <GeometricPattern className="absolute inset-0 w-full h-full opacity-50" />
             </div>
           )}
         </div>
       </Link>
-      <div className="p-5">
+      <div className="p-4">
         <Link href={`/${post.slug}`}>
-          <h2 className="font-bold font-sans text-[20px] text-[#111111] group-hover:text-[#1a3a5c] transition-colors duration-200 leading-snug mb-2">
+          <h2 className="font-serif text-[16px] leading-snug text-[#0f2240] group-hover:text-[#b8862a] transition-colors duration-200 mb-2">
             {post.title}
           </h2>
         </Link>
         {post.excerpt && (
-          <p className="text-[#6b7280] text-sm leading-relaxed line-clamp-2 mb-4">
+          <p className="text-[#7c6f64] text-xs leading-relaxed line-clamp-2 mb-3">
             {post.excerpt}
           </p>
         )}
-        <div className="flex flex-wrap items-center gap-2 text-xs text-[#6b7280]">
+        <div className="flex flex-wrap items-center gap-x-1.5 text-[10px] uppercase tracking-widest text-[#9c8c7c]">
           {post.published_at && (
             <time dateTime={post.published_at}>{formatDate(post.published_at)}</time>
           )}
           {post.reading_time_minutes && (
-            <>
-              <span>·</span>
-              <span>{post.reading_time_minutes} min read</span>
-            </>
+            <span>· {post.reading_time_minutes} min</span>
           )}
           {post.tags?.map((tag) => (
-            <Badge key={tag.id} className="bg-[#f0f4f8] text-[#1a3a5c] border-0 text-xs px-2 py-0.5">
-              {tag.name}
-            </Badge>
+            <span key={tag.id} className="text-[#b8862a]">· {tag.name}</span>
           ))}
         </div>
       </div>

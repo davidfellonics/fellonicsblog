@@ -9,7 +9,7 @@ export default function Header() {
           href="/"
           className="font-serif text-[22px] text-[#0f2240] tracking-tight hover:text-[#b8862a] transition-colors duration-200"
         >
-          FFellonics
+          Ffellonics
         </Link>
         <nav className="flex items-center gap-4">
           <Link

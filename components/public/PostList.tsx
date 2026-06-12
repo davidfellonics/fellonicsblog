@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar";
 import { Button } from "@/components/ui/button";
 import type { PostWithTags } from "@/types";
 
-const POSTS_PER_PAGE = 10;
+const POSTS_PER_PAGE = 12;
 
 interface PostListProps {
   posts: PostWithTags[];

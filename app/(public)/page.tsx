@@ -111,7 +111,7 @@ export default async function HomePage() {
             </div>
           )}
           <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-5">
-            {author?.full_name ?? "FFellonics"}
+            Ffellonics
           </h1>
           <div className="w-10 h-[1px] bg-[#b8862a] mx-auto mb-5" />
           <p className="font-serif italic text-[#7c6f64] text-lg sm:text-xl max-w-[540px] mx-auto leading-relaxed">

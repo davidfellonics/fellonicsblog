@@ -21,6 +21,9 @@ import { createClient } from "@/lib/supabase/client";
 import { formatDate } from "@/lib/utils/formatDate";
 import type { Post } from "@/types";
 
+type SortField = "title" | "status" | "published_at";
+type SortDir = "asc" | "desc";
+
 interface PostTableProps {
   posts: Post[];
 }
@@ -30,10 +33,50 @@ export default function PostTable({ posts: initialPosts }: PostTableProps) {
   const [posts, setPosts] = useState(initialPosts);
   const [query, setQuery] = useState("");
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [sortField, setSortField] = useState<SortField>("published_at");
+  const [sortDir, setSortDir] = useState<SortDir>("desc");
+
+  function handleSort(field: SortField) {
+    if (sortField === field) {
+      setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    } else {
+      setSortField(field);
+      // Date columns default to newest-first; text columns default to A→Z
+      setSortDir(field === "published_at" ? "desc" : "asc");
+    }
+  }
+
+  function SortIcon({ field }: { field: SortField }) {
+    if (sortField !== field)
+      return (
+        <svg className="ml-1 w-3.5 h-3.5 text-[#9ca3af]" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8">
+          <path d="M8 3v10M8 3l-3 3M8 3l3 3M8 13l-3-3M8 13l3-3" />
+        </svg>
+      );
+    return (
+      <svg className="ml-1 w-3.5 h-3.5 text-[#1a3a5c]" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+        {sortDir === "asc"
+          ? <path d="M8 13V3M8 3L5 6M8 3l3 3" />
+          : <path d="M8 3v10M8 13L5 10M8 13l3-3" />}
+      </svg>
+    );
+  }
 
   const filtered = query.trim()
     ? posts.filter((p) => p.title.toLowerCase().includes(query.toLowerCase()))
     : posts;
+
+  const sorted = [...filtered].sort((a, b) => {
+    let cmp = 0;
+    if (sortField === "title") {
+      cmp = a.title.localeCompare(b.title);
+    } else if (sortField === "status") {
+      cmp = (a.status ?? "").localeCompare(b.status ?? "");
+    } else {
+      cmp = (a.published_at ?? "").localeCompare(b.published_at ?? "");
+    }
+    return sortDir === "asc" ? cmp : -cmp;
+  });
 
   async function handleDelete(id: string) {
     setDeleting(id);
@@ -56,21 +99,33 @@ export default function PostTable({ posts: initialPosts }: PostTableProps) {
         <table className="w-full text-sm">
           <thead className="bg-[#f0f4f8]">
             <tr>
-              <th className="text-left px-4 py-3 font-semibold font-sans text-[#111111]">Title</th>
-              <th className="text-left px-4 py-3 font-semibold font-sans text-[#111111] hidden sm:table-cell">Status</th>
-              <th className="text-left px-4 py-3 font-semibold font-sans text-[#111111] hidden md:table-cell">Published</th>
+              <th className="text-left px-4 py-3 font-semibold font-sans text-[#111111]">
+                <button onClick={() => handleSort("title")} className="flex items-center gap-0.5 cursor-pointer hover:text-[#1a3a5c] select-none transition-colors">
+                  Title<SortIcon field="title" />
+                </button>
+              </th>
+              <th className="text-left px-4 py-3 font-semibold font-sans text-[#111111] hidden sm:table-cell">
+                <button onClick={() => handleSort("status")} className="flex items-center gap-0.5 cursor-pointer hover:text-[#1a3a5c] select-none transition-colors">
+                  Status<SortIcon field="status" />
+                </button>
+              </th>
+              <th className="text-left px-4 py-3 font-semibold font-sans text-[#111111] hidden md:table-cell">
+                <button onClick={() => handleSort("published_at")} className="flex items-center gap-0.5 cursor-pointer hover:text-[#1a3a5c] select-none transition-colors">
+                  Published<SortIcon field="published_at" />
+                </button>
+              </th>
               <th className="text-right px-4 py-3 font-semibold font-sans text-[#111111]">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-[#e5e7eb]">
-            {filtered.length === 0 ? (
+            {sorted.length === 0 ? (
               <tr>
                 <td colSpan={4} className="px-4 py-8 text-center text-[#6b7280]">
                   No posts found.
                 </td>
               </tr>
             ) : (
-              filtered.map((post) => (
+              sorted.map((post) => (
                 <tr key={post.id} className="hover:bg-[#f0f4f8]/50">
                   <td className="px-4 py-3">
                     <span className="font-medium text-[#111111] line-clamp-1">{post.title}</span>

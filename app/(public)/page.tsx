@@ -125,7 +125,7 @@ export default async function HomePage() {
       </section>
 
       {/* Posts */}
-      <div className="max-w-[860px] mx-auto px-4 sm:px-6 py-12">
+      <div className="mx-4 sm:mx-[100px] py-12">
         <PostList posts={posts} />
       </div>
 

@@ -23,6 +23,7 @@ export interface Post {
   cover_image_url: string | null;
   author_id: string | null;
   status: "draft" | "published";
+  post_type: "academic" | "reflection";
   published_at: string | null;
   reading_time_minutes: number | null;
   meta_title: string | null;

@@ -36,6 +36,7 @@ export default function PostEditorPage({ post, allTags, authorId }: PostEditorPa
   const [metaTitle, setMetaTitle] = useState(post?.meta_title ?? "");
   const [metaDescription, setMetaDescription] = useState(post?.meta_description ?? "");
   const [isPublished, setIsPublished] = useState(post?.status === "published");
+  const [postType, setPostType] = useState<"academic" | "reflection">(post?.post_type ?? "academic");
   const [selectedTags, setSelectedTags] = useState<Tag[]>(post?.tags ?? []);
   const [newTagInput, setNewTagInput] = useState("");
   const [saving, setSaving] = useState(false);
@@ -116,6 +117,7 @@ export default function PostEditorPage({ post, allTags, authorId }: PostEditorPa
       content,
       cover_image_url: coverImageUrl || null,
       author_id: authorId,
+      post_type: postType,
       status: (publish ? "published" : "draft") as "published" | "draft",
       published_at: publish ? (post?.published_at ?? new Date().toISOString()) : null,
       reading_time_minutes: calculateReadingTime(content),
@@ -228,6 +230,26 @@ export default function PostEditorPage({ post, allTags, authorId }: PostEditorPa
             </Button>
             <input type="file" accept="image/*" className="hidden" onChange={handleCoverUpload} disabled={coverUploading} />
           </label>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label>Post type</Label>
+          <div className="flex gap-2">
+            {(["academic", "reflection"] as const).map((type) => (
+              <button
+                key={type}
+                type="button"
+                onClick={() => setPostType(type)}
+                className={`flex-1 py-1.5 text-xs font-sans rounded border transition-colors ${
+                  postType === type
+                    ? "bg-[#0f2240] text-white border-[#0f2240]"
+                    : "bg-white text-[#6b7280] border-[#e5e7eb] hover:border-[#0f2240]"
+                }`}
+              >
+                {type === "academic" ? "Academic Essay" : "Reflection"}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="space-y-2">

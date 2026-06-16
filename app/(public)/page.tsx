@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { createPublicClient } from "@/lib/supabase/server";
-import PostList from "@/components/public/PostList";
+import HomePosts from "@/components/public/HomePosts";
 import type { PostWithTags, Post, Tag, Profile } from "@/types";
 
 export const revalidate = 3600; // 1 hour — posts don't change every minute
@@ -122,7 +122,7 @@ export default async function HomePage() {
 
       {/* Posts */}
       <div className="mx-4 sm:mx-[100px] py-12">
-        <PostList posts={posts} />
+        <HomePosts posts={posts} />
       </div>
 
       {/* JSON-LD for site */}

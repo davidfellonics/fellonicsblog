@@ -7,7 +7,7 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "About",
-  description: "About Ffellonics — a journal of geometric thought.",
+  description: "Ffellonics is a philosophical and geometric model of relational self-assembly, inspired by physics, sphere-packing mathematics, and ancient metaphysics.",
 };
 
 async function getAuthor(): Promise<Profile | null> {
@@ -42,19 +42,51 @@ export default async function AboutPage() {
 
       <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-5">
         <p>
-          Ffellonics is a journal dedicated to geometry in its many forms — topology,
-          tessellation, polyhedra, non-Euclidean geometry, sacred geometry, and mathematical
-          art. It exists for readers who find as much wonder in a proof as in a cathedral.
+          Ffellonics is a modern philosophical and geometric model of relational
+          self-assembly, which proposes that physical reality and ordered structures
+          naturally emerge from identical units following simple, local rules.
         </p>
         <p>
-          {author?.bio ??
-            "Each essay aims to take a single geometric idea seriously: tracing its history, its mathematics, and its quiet presence in the structures we build and the patterns we notice."}
+          The model is heavily inspired by physics, sphere-packing mathematics, and ancient
+          metaphysics (such as Platonic solids and Taoism). It treats the universe not as a
+          collection of fixed substances, but as a dynamic network of connections.
         </p>
+
+        <h2>Core Principles of Ffellonics</h2>
+        <ul>
+          <li>
+            <strong>Energy Minimization</strong> — The fundamental driving force is
+            &ldquo;symmetric nearest-neighbor attachment under free-energy minimization.&rdquo;
+            Structures form automatically by finding the configuration with the least
+            internal tension.
+          </li>
+          <li>
+            <strong>The 12-Stage Hierarchy</strong> — The model outlines a deterministic
+            12-stage progression. It starts from a single point of contact (&ldquo;ontological
+            touch&rdquo;) and builds up to a stable &ldquo;12-fold ground state,&rdquo; where a
+            maximum of 12 spheres can naturally pack around a central unit.
+          </li>
+          <li>
+            <strong>The Principle of Least Resistance</strong> — Heavily mirroring the
+            Eastern concept of wu wei (effortless flow) and the physics principle of least
+            action, Ffellonics argues that nature organizes itself the way water finds its
+            level — without forced complexity.
+          </li>
+          <li>
+            <strong>Connecting Lines over Substance</strong> — In Ffellonic geometry, the
+            focus is not on the &ldquo;spheres&rdquo; themselves, but on the connecting lines
+            and relationships that describe how those spheres cluster together.
+          </li>
+        </ul>
+
         <p>
-          Alongside the longer academic essays, the journal also publishes shorter personal
-          reflections — informal notes on the same questions, written with less rigor and more
-          curiosity.
+          The framework is actively discussed on platforms like the Ffellonics X Profile and
+          explored deeply in essays such as <em>The Principle of Least Resistance</em> and{" "}
+          <em>Computability Theory and Ffellonics</em>. It serves as a minimalist, relational
+          alternative to traditional &ldquo;Theory of Everything&rdquo; models.
         </p>
+
+        {author?.bio && <p>{author.bio}</p>}
       </div>
     </article>
   );

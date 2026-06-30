@@ -20,10 +20,10 @@ export default function ContactPage() {
         </p>
         <p>
           <a
-            href="mailto:hello@ffell.com"
+            href="mailto:ffellonicforms@gmail.com"
             className="text-[#0f2240] underline underline-offset-2 font-sans not-italic"
           >
-            hello@ffell.com
+            ffellonicforms@gmail.com
           </a>
         </p>
       </div>

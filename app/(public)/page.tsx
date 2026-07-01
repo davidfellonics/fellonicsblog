@@ -106,7 +106,7 @@ export default async function HomePage() {
           aria-hidden="true"
         />
         {/* Dark overlay so text stays readable */}
-        <div className="absolute inset-0 bg-[#0f2240]/70" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[#0f2240]/60" aria-hidden="true" />
 
         {/* Content */}
         <div className="relative mx-4 sm:mx-[100px] py-24 text-center">

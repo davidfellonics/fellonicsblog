@@ -110,19 +110,16 @@ export default async function HomePage() {
 
         {/* Content */}
         <div className="relative mx-4 sm:mx-[100px] py-24 text-center">
-          {author?.avatar_url ? (
+          <div className="w-20 h-20 rounded-full bg-white mx-auto mb-6 overflow-hidden ring-2 ring-[#b8862a] ring-offset-4 ring-offset-transparent flex items-center justify-center">
             <Image
-              src={author.avatar_url}
-              alt={author.full_name}
+              src="/logo-circle.png"
+              alt="Ffellonics"
               width={80}
               height={80}
-              className="rounded-full mx-auto mb-6 object-cover w-20 h-20 ring-2 ring-[#b8862a] ring-offset-4 ring-offset-transparent"
+              className="w-full h-full object-cover"
+              priority
             />
-          ) : (
-            <div className="w-20 h-20 rounded-full bg-white/10 mx-auto mb-6 flex items-center justify-center ring-2 ring-[#b8862a] ring-offset-4 ring-offset-transparent">
-              <span className="font-serif text-white text-2xl">F</span>
-            </div>
-          )}
+          </div>
           <h1 className="font-serif text-4xl sm:text-5xl text-white leading-tight tracking-tight mb-5">
             Ffellonics
           </h1>

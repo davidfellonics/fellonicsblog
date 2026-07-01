@@ -95,26 +95,39 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-[#ddd5c8]">
-        <div className="mx-4 sm:mx-[100px] py-20 text-center">
+      <section className="relative border-b border-[#ddd5c8] overflow-hidden">
+        {/* Background image */}
+        <Image
+          src="/hero-bg.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          priority
+          aria-hidden="true"
+        />
+        {/* Dark overlay so text stays readable */}
+        <div className="absolute inset-0 bg-[#0f2240]/70" aria-hidden="true" />
+
+        {/* Content */}
+        <div className="relative mx-4 sm:mx-[100px] py-24 text-center">
           {author?.avatar_url ? (
             <Image
               src={author.avatar_url}
               alt={author.full_name}
               width={80}
               height={80}
-              className="rounded-full mx-auto mb-6 object-cover w-20 h-20 ring-2 ring-[#b8862a] ring-offset-4 ring-offset-[#f9f6f2]"
+              className="rounded-full mx-auto mb-6 object-cover w-20 h-20 ring-2 ring-[#b8862a] ring-offset-4 ring-offset-transparent"
             />
           ) : (
-            <div className="w-20 h-20 rounded-full bg-[#f0ebe2] mx-auto mb-6 flex items-center justify-center ring-2 ring-[#b8862a] ring-offset-4 ring-offset-[#f9f6f2]">
-              <span className="font-serif text-[#0f2240] text-2xl">F</span>
+            <div className="w-20 h-20 rounded-full bg-white/10 mx-auto mb-6 flex items-center justify-center ring-2 ring-[#b8862a] ring-offset-4 ring-offset-transparent">
+              <span className="font-serif text-white text-2xl">F</span>
             </div>
           )}
-          <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-5">
+          <h1 className="font-serif text-4xl sm:text-5xl text-white leading-tight tracking-tight mb-5">
             Ffellonics
           </h1>
           <div className="w-10 h-[1px] bg-[#b8862a] mx-auto mb-5" />
-          <p className="font-serif italic text-[#7c6f64] text-lg sm:text-xl max-w-[540px] mx-auto leading-relaxed">
+          <p className="font-serif italic text-white/80 text-lg sm:text-xl max-w-[540px] mx-auto leading-relaxed">
             {author?.bio ?? "A journal of geometric thought — topology, polyhedra, tessellation, and the mathematics of form."}
           </p>
         </div>

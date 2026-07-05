@@ -95,13 +95,14 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative border-b border-[#ddd5c8] overflow-hidden">
+      <section className="relative w-full border-b border-[#ddd5c8] overflow-hidden">
         {/* Background image */}
         <Image
           src="/hero-bg.jpg"
           alt=""
           fill
-          className="object-cover"
+          sizes="100vw"
+          className="object-cover w-full"
           priority
           aria-hidden="true"
         />

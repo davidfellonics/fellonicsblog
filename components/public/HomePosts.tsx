@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useState, useMemo } from "react";
 import PostCard from "./PostCard";
 import type { PostWithTags } from "@/types";
 

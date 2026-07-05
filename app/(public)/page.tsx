@@ -95,17 +95,15 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative w-full border-b border-[#ddd5c8] overflow-hidden">
-        {/* Background image */}
-        <Image
-          src="/hero-bg.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover w-full"
-          priority
-          aria-hidden="true"
-        />
+      <section
+        className="relative w-full border-b border-[#ddd5c8]"
+        style={{
+          backgroundImage: "url('/hero-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         {/* Dark overlay so text stays readable */}
         <div className="absolute inset-0 bg-[#0f2240]/60" aria-hidden="true" />
 

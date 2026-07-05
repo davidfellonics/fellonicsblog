@@ -3,9 +3,9 @@ import Footer from "@/components/shared/Footer";
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#f9f6f2]">
+    <div className="min-h-screen w-full overflow-x-hidden bg-[#f9f6f2]">
       <Header />
-      <main>{children}</main>
+      <main className="w-full">{children}</main>
       <Footer />
     </div>
   );

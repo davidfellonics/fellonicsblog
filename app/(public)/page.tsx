@@ -96,8 +96,10 @@ export default async function HomePage() {
     <>
       {/* Hero */}
       <section
-        className="relative w-full border-b border-[#ddd5c8]"
+        className="relative border-b border-[#ddd5c8]"
         style={{
+          width: "100vw",
+          marginLeft: "calc(50% - 50vw)",
           backgroundImage: "url('/hero-bg.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",

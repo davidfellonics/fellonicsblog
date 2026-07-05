@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import PostCard from "./PostCard";
-import SearchBar from "./SearchBar";
 import type { PostWithTags } from "@/types";
 
 const POSTS_PER_PAGE = 12;
@@ -12,8 +11,6 @@ interface HomePostsProps {
 }
 
 export default function HomePosts({ posts }: HomePostsProps) {
-  const [query, setQuery] = useState("");
-
   const academicPosts = useMemo(
     () => posts.filter((p) => (p.post_type ?? "academic") === "academic"),
     [posts]
@@ -24,45 +21,20 @@ export default function HomePosts({ posts }: HomePostsProps) {
     [posts]
   );
 
-  const searchResults = useMemo(() => {
-    if (!query.trim()) return [];
-    const q = query.toLowerCase();
-    return posts.filter(
-      (p) =>
-        p.title.toLowerCase().includes(q) ||
-        (p.excerpt?.toLowerCase().includes(q) ?? false) ||
-        p.tags?.some((t) => t.name.toLowerCase().includes(q))
-    );
-  }, [posts, query]);
-
   return (
-    <div>
-      <div id="search" className="mb-12">
-        <SearchBar value={query} onChange={setQuery} />
-      </div>
-
-      {query.trim() ? (
+    <div className="space-y-20">
+      <SectionGrid
+        title="Academic Essays"
+        tagline="In-depth explorations of geometry, topology, and mathematical form"
+        posts={academicPosts}
+        priorityCount={2}
+      />
+      {reflectionPosts.length > 0 && (
         <SectionGrid
-          title={`Results for "${query}"`}
-          tagline={`${searchResults.length} essay${searchResults.length !== 1 ? "s" : ""} found`}
-          posts={searchResults}
+          title="Personal Reflections"
+          tagline="Shorter thoughts on mathematics, art, and the geometry of everyday life"
+          posts={reflectionPosts}
         />
-      ) : (
-        <div className="space-y-20">
-          <SectionGrid
-            title="Academic Essays"
-            tagline="In-depth explorations of geometry, topology, and mathematical form"
-            posts={academicPosts}
-            priorityCount={2}
-          />
-          {reflectionPosts.length > 0 && (
-            <SectionGrid
-              title="Personal Reflections"
-              tagline="Shorter thoughts on mathematics, art, and the geometry of everyday life"
-              posts={reflectionPosts}
-            />
-          )}
-        </div>
       )}
     </div>
   );

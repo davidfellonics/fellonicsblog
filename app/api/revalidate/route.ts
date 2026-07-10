@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
 export async function POST(request: NextRequest) {
-  const body = await request.json().catch(() => ({})) as { slug?: string };
+  const body = await request.json().catch(() => ({})) as { slug?: string; path?: string };
 
   // Accept EITHER an authenticated browser session OR the service-role key
   // in the Authorization header (used by the /new-blog-post CLI skill).
@@ -21,6 +21,7 @@ export async function POST(request: NextRequest) {
 
   revalidatePath("/");
   if (body.slug) revalidatePath(`/${body.slug}`);
+  if (body.path) revalidatePath(body.path);
 
   return NextResponse.json({ revalidated: true });
 }

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { createPublicClient } from "@/lib/supabase/server";
-import type { Profile } from "@/types";
 
 export const dynamic = "force-dynamic";
 
@@ -9,18 +7,7 @@ export const metadata: Metadata = {
   description: "A glossary of people and subjects mentioned in the Ffellonics essays, arranged alphabetically.",
 };
 
-async function getAuthor(): Promise<Profile | null> {
-  try {
-    const supabase = createPublicClient();
-    const { data } = await supabase.from("profiles").select("*").limit(1).single();
-    return data as Profile | null;
-  } catch {
-    return null;
-  }
-}
-
 export default async function BackgroundPage() {
-  const author = await getAuthor();
 
   return (
     <article className="max-w-[680px] mx-auto px-4 sm:px-6 py-16">

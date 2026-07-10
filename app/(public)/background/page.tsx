@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   title: "Background",
   description: "A glossary of people and subjects mentioned in the Ffellonics essays, arranged alphabetically.",
 };
 
-export default async function BackgroundPage() {
-
+export default function BackgroundPage() {
   return (
     <article className="max-w-[680px] mx-auto px-4 sm:px-6 py-16">
       <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-5">
@@ -26,7 +23,10 @@ export default async function BackgroundPage() {
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">P</h2>
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">Plato <span className="text-sm font-sans font-normal text-[#7c6f64]">(c. 428–347 BCE)</span></h3>
+            <h3 className="font-serif text-xl text-[#0f2240]">
+              Plato{" "}
+              <span className="text-sm font-sans font-normal text-[#7c6f64]">(c. 428–347 BCE)</span>
+            </h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
               <p>
                 An ancient Greek philosopher widely regarded as one of the most important thinkers

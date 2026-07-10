@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { createPublicClient } from "@/lib/supabase/server";
 import type { Profile } from "@/types";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Background",
-  description: "A fresh look at the Platonic solids — why the standard definition falls short, and how Ffellonic geometry reframes them as milestones in a 12-level developmental hierarchy.",
+  description: "A glossary of people and subjects mentioned in the Ffellonics essays, arranged alphabetically.",
 };
 
 async function getAuthor(): Promise<Profile | null> {

@@ -19,6 +19,40 @@ export default function BackgroundPage() {
 
       <div className="space-y-10">
 
+        {/* E */}
+        <section>
+          <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">E</h2>
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">
+              Euclid{" "}
+              <span className="text-sm font-sans font-normal text-[#7c6f64]">(c. 300 BCE)</span>
+            </h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                An ancient Greek mathematician who lived and worked in Alexandria, Egypt, during
+                the reign of Ptolemy I. Often called the &ldquo;Father of Geometry,&rdquo; he is best
+                known for his monumental treatise <em>Elements</em>, a 13-book compilation that
+                organised and rigorously proved the mathematical knowledge of his time.
+              </p>
+              <p>
+                <em>Elements</em> begins with definitions, axioms, and postulates, then builds an
+                elegant deductive system covering plane geometry, number theory, irrational
+                numbers, and solid geometry. Its logical structure — starting from self-evident
+                truths and proceeding through theorems — became the model for mathematical
+                reasoning for over two millennia.
+              </p>
+              <p>
+                Almost nothing is known of Euclid&apos;s personal life; even his birthplace and exact
+                dates remain uncertain. Later writers described him as a kind and modest teacher.
+                His work was so influential that &ldquo;Euclidean geometry&rdquo; still refers to the
+                familiar flat-space geometry taught in schools today. <em>Elements</em> was one of
+                the first mathematical books printed after the invention of the printing press and
+                remains a cornerstone of Western education and thought.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* P */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">P</h2>

@@ -53,6 +53,43 @@ export default function BackgroundPage() {
           </div>
         </section>
 
+        {/* F */}
+        <section>
+          <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">F</h2>
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">
+              Friston, Karl{" "}
+              <span className="text-sm font-sans font-normal text-[#7c6f64]">(born 12 July 1959)</span>
+            </h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                A British neuroscientist and theoretician widely regarded as one of the most
+                influential figures in modern brain science. He is Professor of Neuroscience at
+                University College London (UCL) and Scientific Director of the Wellcome Centre
+                for Human Neuroimaging.
+              </p>
+              <p>
+                Friston revolutionised neuroimaging by inventing statistical parametric mapping
+                (SPM), voxel-based morphometry (VBM), and dynamic causal modelling (DCM) —
+                tools now used in the vast majority of brain imaging studies worldwide.
+              </p>
+              <p>
+                He is best known for developing the Free Energy Principle (FEP) and Active
+                Inference, a unifying mathematical theory proposing that biological systems
+                (including brains) maintain their existence by minimising &ldquo;surprise&rdquo; or
+                variational free energy — essentially acting as prediction machines that
+                constantly update their internal models of the world.
+              </p>
+              <p>
+                His work spans psychiatry, theoretical neuroscience, physics-inspired statistics,
+                and applications to AI. With over 1,000 papers and exceptionally high citation
+                impact, Friston continues to shape fields from precision psychiatry to
+                consciousness studies and next-generation artificial intelligence.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* P */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">P</h2>

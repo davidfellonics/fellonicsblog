@@ -36,6 +36,36 @@ export default function BackgroundPage() {
           </div>
         </section>
 
+        {/* B */}
+        <section>
+          <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">B</h2>
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">
+              Bohr, Niels{" "}
+              <span className="text-sm font-sans font-normal text-[#7c6f64]">(1885–1962)</span>
+            </h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                A Danish physicist and one of the founding fathers of quantum mechanics. In 1913,
+                he proposed the revolutionary Bohr model of the atom, introducing quantised
+                electron orbits and explaining atomic spectra. This laid the foundation for
+                modern atomic theory and earned him the 1922 Nobel Prize in Physics.
+              </p>
+              <p>
+                Bohr later developed the principle of complementarity, arguing that quantum
+                phenomena can be understood through mutually exclusive but complementary classical
+                concepts (wave and particle). He founded the Copenhagen Institute of Theoretical
+                Physics, which became a global hub for quantum research.
+              </p>
+              <p>
+                During World War II, he fled Nazi-occupied Denmark and contributed to the
+                Manhattan Project, later advocating for international control of nuclear weapons.
+                Bohr remains a towering figure in 20th-century science.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* E */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">E</h2>

@@ -56,6 +56,32 @@ export default function BackgroundPage() {
         {/* F */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">F</h2>
+
+          {/* Free Energy Principle */}
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
+            <h3 className="font-serif text-xl text-[#0f2240]">Free Energy Principle (FEP)</h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                Developed by Karl Friston, the Free Energy Principle is a unifying mathematical
+                theory in neuroscience and biology. It proposes that all living systems — from
+                cells to brains — act to minimise &ldquo;free energy,&rdquo; an information-theoretic
+                measure of surprise or uncertainty about their sensory inputs.
+              </p>
+              <p>
+                The brain is viewed as a prediction machine that maintains a generative model of
+                the world. It continuously minimises prediction errors in two ways: updating its
+                beliefs (perception) or acting on the world to make it match predictions (active
+                inference). By minimising variational free energy — an upper bound on surprise —
+                organisms resist disorder and maintain their integrity.
+              </p>
+              <p>
+                FEP explains perception, learning, action, and even consciousness under one
+                framework and is increasingly applied to AI, psychiatry, and biology.
+              </p>
+            </div>
+          </div>
+
+          {/* Friston, Karl */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl text-[#0f2240]">
               Friston, Karl{" "}
@@ -88,6 +114,7 @@ export default function BackgroundPage() {
               </p>
             </div>
           </div>
+
         </section>
 
         {/* P */}

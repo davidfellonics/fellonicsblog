@@ -134,6 +134,39 @@ export default function BackgroundPage() {
 
         </section>
 
+        {/* G */}
+        <section>
+          <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">G</h2>
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">Gibbs Free Energy (G)</h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                A key thermodynamic quantity that predicts whether a chemical reaction or process
+                can occur spontaneously at constant temperature and pressure.
+              </p>
+              <div className="my-4 pl-5 border-l-2 border-[#ddd5c8]">
+                <p className="font-sans text-sm text-[#0f2240] not-italic mb-3">
+                  <strong>Formula:</strong> G = H &minus; TS
+                  <br />
+                  <span className="text-[#7c6f64]">(H = enthalpy, T = absolute temperature, S = entropy)</span>
+                </p>
+                <ul className="font-sans text-sm space-y-1 list-none pl-0">
+                  <li><span className="text-[#0f2240]">ΔG &lt; 0</span> — Spontaneous (exergonic; releases free energy)</li>
+                  <li><span className="text-[#0f2240]">ΔG &gt; 0</span> — Non-spontaneous (endergonic; requires energy input)</li>
+                  <li><span className="text-[#0f2240]">ΔG = 0</span> — At equilibrium</li>
+                </ul>
+              </div>
+              <p>
+                It combines the system&apos;s enthalpy (heat content) and entropy (disorder) to
+                measure the maximum useful work obtainable from a process. Developed by Josiah
+                Willard Gibbs, it is central to chemistry, biology (e.g., ATP hydrolysis), and
+                engineering. Unlike total energy, Gibbs Free Energy focuses on the portion
+                available under real-world conditions.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* K */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">K</h2>

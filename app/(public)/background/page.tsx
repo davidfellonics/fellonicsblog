@@ -117,6 +117,40 @@ export default function BackgroundPage() {
 
         </section>
 
+        {/* K */}
+        <section>
+          <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">K</h2>
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">
+              Kauffman, Stuart{" "}
+              <span className="text-sm font-sans font-normal text-[#7c6f64]">(born 1939)</span>
+            </h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                An American theoretical biologist, physician, and complex systems researcher
+                renowned for his work on the origin of life and self-organisation. A MacArthur
+                Fellow and emeritus professor of biochemistry at the University of Pennsylvania,
+                he has also held positions at the University of Chicago, University of Calgary,
+                and the Santa Fe Institute.
+              </p>
+              <p>
+                Kauffman is best known for arguing that biological complexity arises as much from
+                self-organisation and far-from-equilibrium dynamics as from Darwinian natural
+                selection. He pioneered the use of random Boolean networks to model gene
+                regulatory networks, proposing that cell types are dynamical attractors. He also
+                developed the theory of autocatalytic sets for the spontaneous emergence of life
+                and the concept of the &ldquo;adjacent possible&rdquo; to explain explosive innovation
+                in evolution and the economy.
+              </p>
+              <p>
+                His influential books include <em>The Origins of Order</em> (1993) and{" "}
+                <em>At Home in the Universe</em>. Kauffman&apos;s ideas have shaped complexity
+                science and continue to influence biology, philosophy, and systems theory.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* P */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">P</h2>

@@ -19,6 +19,23 @@ export default function BackgroundPage() {
 
       <div className="space-y-10">
 
+        {/* A */}
+        <section>
+          <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">A</h2>
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">Algorithm</h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                A step-by-step set of instructions designed to solve a specific problem or
+                perform a task. It takes input, processes it through a series of logical,
+                well-defined rules, and produces an output. Algorithms power everything from
+                simple math calculations to complex AI systems. They must be precise, finite,
+                and effective.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* E */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">E</h2>

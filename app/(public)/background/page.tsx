@@ -234,7 +234,9 @@ export default function BackgroundPage() {
         {/* P */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">P</h2>
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+
+          {/* Plato */}
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl text-[#0f2240]">
               Plato{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(c. 428–347 BCE)</span>
@@ -258,6 +260,32 @@ export default function BackgroundPage() {
               </p>
             </div>
           </div>
+
+          {/* Platonic Solids */}
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">Platonic Solids</h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                The five perfectly regular three-dimensional shapes — every face is the same
+                polygon, every edge the same length, every vertex identical:
+              </p>
+              <ul className="font-serif space-y-1">
+                <li><strong>Tetrahedron</strong> — 4 equilateral triangle faces (a pyramid with a triangular base)</li>
+                <li><strong>Cube (Hexahedron)</strong> — 6 square faces</li>
+                <li><strong>Octahedron</strong> — 8 equilateral triangle faces (two pyramids base-to-base)</li>
+                <li><strong>Dodecahedron</strong> — 12 pentagonal faces</li>
+                <li><strong>Icosahedron</strong> — 20 equilateral triangle faces</li>
+              </ul>
+              <p>
+                Plato associated them with the classical elements — fire (tetrahedron), earth
+                (cube), air (octahedron), water (icosahedron) — and the cosmos (dodecahedron).
+                Euclid proved these five are the only ones that can exist. The constraint is
+                simple: at least three faces must meet at each vertex, and the angles cannot
+                add up to 360° or more, or the shape will not close into a solid.
+              </p>
+            </div>
+          </div>
+
         </section>
 
         {/* R */}

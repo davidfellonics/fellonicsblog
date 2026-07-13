@@ -263,7 +263,9 @@ export default function BackgroundPage() {
         {/* R */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">R</h2>
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+
+          {/* Relational Emergence */}
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl text-[#0f2240]">Relational Emergence</h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
               <p>
@@ -290,6 +292,23 @@ export default function BackgroundPage() {
               </p>
             </div>
           </div>
+
+          {/* Relational Self-Assembly */}
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">Relational Self-Assembly</h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                A bottom-up process where simple, identical units — think spheres — spontaneously
+                form complex, ordered structures by following one local rule: attach to neighbours
+                symmetrically to maximise contacts and minimise energy.
+              </p>
+              <p>
+                No blueprint or external control is needed. Everything meaningful emerges purely
+                from the relations between the units.
+              </p>
+            </div>
+          </div>
+
         </section>
 
       </div>

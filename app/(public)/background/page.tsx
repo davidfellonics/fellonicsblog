@@ -260,6 +260,38 @@ export default function BackgroundPage() {
           </div>
         </section>
 
+        {/* R */}
+        <section>
+          <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">R</h2>
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">Relational Emergence</h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                When something new and meaningful arises not from individual parts, but from the
+                ongoing connections and interactions between them.
+              </p>
+              <p>
+                Imagine a party: people on their own are just individuals. But as they talk,
+                laugh, and react to each other, a lively atmosphere appears that none possessed
+                alone — it exists only in the relationships. The same principle holds for
+                friendship, which emerges from shared moments, trust, and mutual exchange rather
+                than residing inside any one person. Or a great band: the music that moves you
+                comes from how the players listen and synchronise, not from the separate notes
+                played in isolation.
+              </p>
+              <p>
+                In everyday life, relational emergence explains team chemistry, group moods, and
+                how extended interactions between people — or even between a person and an AI —
+                can begin to feel like something more than the sum of their exchanges. The magic
+                is not in the pieces. It is in the relating.
+              </p>
+              <p className="font-sans text-sm italic text-[#7c6f64]">
+                Simple idea: many of life&apos;s best things are born in the space between us.
+              </p>
+            </div>
+          </div>
+        </section>
+
       </div>
     </article>
   );

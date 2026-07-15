@@ -66,6 +66,35 @@ export default function BackgroundPage() {
           </div>
         </section>
 
+        {/* D */}
+        <section>
+          <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">D</h2>
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">Dissipative Structure</h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                A self-organised system that maintains order by constantly dissipating — using
+                and exporting — energy. While the universe trends toward disorder, certain open
+                systems far from equilibrium can spontaneously create and sustain structured
+                patterns, as long as energy flows through them. They export more disorder to
+                their surroundings to pay for their local order.
+              </p>
+              <p>
+                <strong>Key traits:</strong> open system, continuous energy input required,
+                self-organising, emerges past a critical threshold.
+              </p>
+              <p>
+                <strong>Examples:</strong> Bénard convection cells, hurricanes, living organisms,
+                and oscillating chemical reactions.
+              </p>
+              <p>
+                Coined by Ilya Prigogine, this concept explains how complexity and life can arise
+                naturally.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* E */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">E</h2>

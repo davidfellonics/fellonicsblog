@@ -409,6 +409,32 @@ export default function BackgroundPage() {
 
         </section>
 
+        {/* S */}
+        <section>
+          <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">S</h2>
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">Symmetry</h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                The quality of an object, system, or pattern that remains unchanged under certain
+                transformations. In geometry it appears as reflection (mirror symmetry), rotation
+                (turning an object so it looks identical), translation, or glide symmetry. A
+                square has four lines of symmetry; a circle has infinite.
+              </p>
+              <p>
+                In nature and biology, bilateral symmetry — left-right mirroring — is common in
+                animals, aiding balance and movement. In physics, symmetries underlie fundamental
+                laws: time symmetry leads to energy conservation.
+              </p>
+              <p>
+                Art, architecture, and design use symmetry for beauty, harmony, and visual
+                appeal. Ultimately, symmetry reveals hidden order and efficiency in the universe,
+                from snowflakes to galaxies.
+              </p>
+            </div>
+          </div>
+        </section>
+
       </div>
     </article>
   );

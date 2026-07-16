@@ -260,6 +260,47 @@ export default function BackgroundPage() {
           </div>
         </section>
 
+        {/* L */}
+        <section>
+          <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">L</h2>
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">
+              Levin, Michael{" "}
+              <span className="text-sm font-sans font-normal text-[#7c6f64]">(born 1969)</span>
+            </h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                An American developmental and synthetic biologist at Tufts University, where he
+                is the Vannevar Bush Distinguished Professor of Biology. He directs the Allen
+                Discovery Center at Tufts and the Tufts Center for Regenerative and
+                Developmental Biology, and co-directs the Institute for Computationally Designed
+                Organisms.
+              </p>
+              <p>
+                Born in Moscow, Levin immigrated to Massachusetts in 1978. He holds dual B.S.
+                degrees in computer science and biology from Tufts and a Ph.D. in genetics from
+                Harvard.
+              </p>
+              <p>
+                His research explores bioelectric signals that guide morphogenesis, regeneration,
+                and cancer suppression. He is known for pioneering xenobots — living robots made
+                from frog cells — and for advancing the study of basal cognition and collective
+                intelligence across scales.
+              </p>
+              <p>
+                In recent work (2025–2026), Levin has shown how learning increases causal
+                emergence — the integration of components into a greater whole — in gene networks
+                and AI agents, revealing deep links between learning, agency, and emergent minds.
+              </p>
+              <p>
+                With over 400 publications, his interdisciplinary approach bridges biology,
+                computation, and cognitive science, reshaping our understanding of life, form,
+                and intelligence.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* P */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">P</h2>

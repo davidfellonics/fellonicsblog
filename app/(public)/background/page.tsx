@@ -133,6 +133,30 @@ export default function BackgroundPage() {
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">F</h2>
 
+          {/* Ffellonic Form */}
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
+            <h3 className="font-serif text-xl text-[#0f2240]">Ffellonic Form</h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                A geometric structure created by connecting the centres of identical spheres that
+                have self-assembled freely and naturally according to a single local rule:
+                symmetric nearest-neighbour attachment that maximises contacts while minimising
+                free energy.
+              </p>
+              <p>
+                This process generates a deterministic 12-level hierarchy of relational order,
+                beginning with a simple dyad (Level 1) and progressing through triangles,
+                Platonic solids (tetrahedron, octahedron, icosahedron), spaceframes, and
+                tessellations, culminating in the dense 12-fold FCC/HCP lattice (Level 12).
+              </p>
+              <p>
+                Ffellonic Forms reveal how symmetry, coherence, and complex structure emerge
+                purely from local sphere-to-sphere relations, providing a minimalist model of
+                natural self-organisation in geometry, physics, and beyond.
+              </p>
+            </div>
+          </div>
+
           {/* Ffellonics */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl text-[#0f2240]">Ffellonics</h3>

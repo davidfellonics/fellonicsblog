@@ -66,6 +66,32 @@ export default function BackgroundPage() {
           </div>
         </section>
 
+        {/* C */}
+        <section>
+          <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">C</h2>
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">Canalicchio Duals</h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                Also known as the Canalicchio dual series, these form one of the two
+                complementary sequences in Ffellonic geometry — a sphere-packing framework that
+                reinterprets Platonic solids as emergent structures. Identical spheres follow a
+                single local rule: symmetric nearest-neighbour attachment minimising free energy
+                while preserving global symmetry. This generates a deterministic 12-level
+                hierarchy of relational self-assembly, from dyads to close-packed lattices.
+              </p>
+              <p>
+                The primary Ffellonic series connects sphere centres. At each level, the
+                Canalicchio Dual is the dual form of the corresponding Ffellonic Form,
+                constructed from radical centres of triplet spheres. This duality reorganises
+                the five Platonic solids into two progressive sequences embedded in the unified
+                hierarchy, revealing deeper correspondences with natural packings, crystals, and
+                networks.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* D */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">D</h2>

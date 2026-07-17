@@ -133,6 +133,43 @@ export default function BackgroundPage() {
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">F</h2>
 
+          {/* Ffellonics */}
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
+            <h3 className="font-serif text-xl text-[#0f2240]">Ffellonics</h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                Known as the geometry of relational emergence, Ffellonics is a minimalist
+                geometric-philosophical framework developed by David Fell. Presented on ffell.com
+                as a journal of geometric thought, it proposes that reality arises through
+                identical spherical units following one simple local rule: symmetric
+                nearest-neighbour attachment that maximises contacts while minimising Gibbs free
+                energy.
+              </p>
+              <p>
+                From isolated spheres in pre-relational potential, the first &ldquo;ontological
+                touch&rdquo; (Level 1: dyad) initiates a deterministic, bottom-up self-assembly.
+                This unfolds via a fixed 12-level hierarchy of growing symmetry and coordination:
+                early stages yield triangles and the tetrahedron; intermediate levels produce
+                Platonic and Archimedean solids; and the process reaches its thermodynamic ground
+                state at Level 12 — the dense 12-fold FCC/HCP lattice, embodying maximum
+                relational harmony and the 3D kissing number.
+              </p>
+              <p>
+                As the geometry of relational emergence, Ffellonics positions itself as
+                nature&apos;s &ldquo;living algorithm,&rdquo; bridging crystal formation, protein
+                folding, biological self-organisation, and the emergence of consciousness as
+                progressive relational depth. It resonates with free-energy principles, Taoist
+                effortless action, and philosophies that prioritise connection over isolation.
+              </p>
+              <p>
+                Emphasising spontaneous order, symmetry, and thermodynamics without top-down
+                design, Ffellonics offers an elegant reference model for how simple local
+                interactions generate hierarchical complexity, stability, and even awareness
+                across physics, biology, and mind.
+              </p>
+            </div>
+          </div>
+
           {/* Free Energy Principle */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl text-[#0f2240]">Free Energy Principle (FEP)</h3>

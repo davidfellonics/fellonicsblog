@@ -88,6 +88,13 @@ export default function BackgroundPage() {
                 hierarchy, revealing deeper correspondences with natural packings, crystals, and
                 networks.
               </p>
+              <div className="mt-6">
+                <img
+                  src="/canalicchio-dual-form.svg"
+                  alt="Canalicchio Dual Form diagram"
+                  className="w-full max-w-[480px] mx-auto block"
+                />
+              </div>
             </div>
           </div>
         </section>

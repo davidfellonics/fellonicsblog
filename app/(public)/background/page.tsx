@@ -187,6 +187,13 @@ export default function BackgroundPage() {
                 purely from local sphere-to-sphere relations, providing a minimalist model of
                 natural self-organisation in geometry, physics, and beyond.
               </p>
+              <div className="mt-6">
+                <img
+                  src="/ffellonic-forms-collection.svg"
+                  alt="Ffellonic Forms Collection diagram"
+                  className="w-full max-w-[480px] mx-auto block"
+                />
+              </div>
             </div>
           </div>
 

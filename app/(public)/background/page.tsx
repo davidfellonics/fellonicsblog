@@ -457,6 +457,41 @@ export default function BackgroundPage() {
             </div>
           </div>
 
+          {/* Prigogine, Ilya */}
+          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+            <h3 className="font-serif text-xl text-[#0f2240]">
+              Prigogine, Ilya{" "}
+              <span className="text-sm font-sans font-normal text-[#7c6f64]">(1917–2003)</span>
+            </h3>
+            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+              <p>
+                A Russian-Belgian physical chemist and Nobel laureate renowned for his pioneering
+                work on non-equilibrium thermodynamics and complex systems. Born in Moscow on
+                25 January 1917, he emigrated with his family to Belgium as a child amid the
+                Russian Revolution. He studied at the Free University of Brussels, earning his
+                doctorate in 1941–42, and became a Belgian citizen in 1949. Prigogine spent much
+                of his career at the Université Libre de Bruxelles and later at the University
+                of Texas at Austin.
+              </p>
+              <p>
+                His most significant contribution was the theory of dissipative structures —
+                coherent, self-organising systems that emerge and persist far from thermodynamic
+                equilibrium through continuous exchanges of energy and matter with their
+                environment. This groundbreaking idea explained how order can arise from chaos in
+                open systems, challenging classical equilibrium thermodynamics and illuminating
+                phenomena from chemical oscillations to biological and social processes.
+              </p>
+              <p>
+                Prigogine was awarded the 1977 Nobel Prize in Chemistry &ldquo;for his
+                contributions to non-equilibrium thermodynamics, particularly the theory of
+                dissipative structures.&rdquo; He also received the Francqui Prize (1955) and
+                Rumford Medal (1976). His work bridged chemistry, physics, and complexity
+                science, influencing fields from self-organisation to the philosophy of time and
+                irreversibility. He passed away in Brussels on 28 May 2003.
+              </p>
+            </div>
+          </div>
+
         </section>
 
         {/* R */}

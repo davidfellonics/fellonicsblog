@@ -571,6 +571,44 @@ export default function BackgroundPage() {
           </div>
         </section>
 
+        {/* W */}
+        <section>
+          <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">W</h2>
+          {/* Whitehead, Alfred North */}
+          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
+              Whitehead, Alfred North (1861–1947)
+            </h3>
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
+              <p>
+                Alfred North Whitehead (1861–1947) was a distinguished English mathematician,
+                logician, and philosopher whose work profoundly shaped 20th-century thought. Born
+                in Ramsgate, Kent, he studied at Trinity College, Cambridge, where he later taught
+                mathematics and became a Fellow. Whitehead is best known for co-authoring the
+                monumental three-volume <em>Principia Mathematica</em> (1910–1913) with Bertrand
+                Russell, an ambitious attempt to ground mathematics in formal logic. This landmark
+                work, though immensely influential, consumed over a decade of their collaboration.
+              </p>
+              <p>
+                After tragedy and intellectual shifts, Whitehead moved to Harvard University in
+                1924 at age 63, where he developed his mature metaphysical system known as{" "}
+                <strong>process philosophy</strong> (or process-relational philosophy). Rejecting
+                the traditional Western view of reality as composed of static substances or
+                &ldquo;things,&rdquo; he portrayed the universe as a dynamic, interconnected web
+                of becoming — momentary events (<em>actual occasions</em>) in constant creative
+                advance, interwoven through relations and creativity.
+              </p>
+              <p>
+                His major philosophical works, including <em>Science and the Modern World</em>{" "}
+                (1925), <em>Process and Reality</em> (1929), and <em>Adventures of Ideas</em>{" "}
+                (1933), offered a holistic vision integrating science, aesthetics, education, and
+                religion. Whitehead&apos;s thought continues to influence theology, ecology,
+                education, and speculative philosophy today.
+              </p>
+            </div>
+          </div>
+        </section>
+
       </div>
     </article>
   );

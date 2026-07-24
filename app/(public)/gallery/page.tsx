@@ -67,6 +67,30 @@ export default function GalleryPage() {
           </div>
         </div>
 
+        {/* Composition 56 */}
+        <div className="border-t border-[#ddd5c8] pt-10">
+          <img
+            src="/gallery/composition-56.png"
+            alt="Composition 56 — Platonic Solid Duals"
+            className="w-full max-w-[720px] mx-auto block mb-8"
+          />
+          <div className="max-w-[680px] mx-auto">
+            <h2 className="font-serif text-2xl text-[#0f2240] mb-4">
+              Composition 56
+            </h2>
+            <div className="font-serif text-[#333] leading-relaxed space-y-4">
+              <p>
+                To understand the full potential of the Platonic solids, you need to see that they
+                are not simply five separate shapes. They form two linked series of three duals each.
+              </p>
+              <p>
+                One series is the tetrahedron, the octahedron and the icosahedron. The other is the
+                tetrahedron (which is dual to itself), the cube and the dodecahedron.
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </article>
   );

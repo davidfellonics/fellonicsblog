@@ -91,6 +91,23 @@ export default function GalleryPage() {
           </div>
         </div>
 
+        {/* Composition 555 */}
+        <div className="border-t border-[#ddd5c8] pt-10">
+          <img
+            src="/gallery/composition-555.png"
+            alt="Sphere arrangements underlying the Platonic Solids"
+            className="w-full max-w-[720px] mx-auto block mb-8"
+          />
+          <div className="max-w-[680px] mx-auto">
+            <h2 className="font-serif text-2xl text-[#0f2240] mb-4">
+              Composition 555
+            </h2>
+            <div className="font-serif text-[#333] leading-relaxed">
+              <p>The sphere arrangements on which the Platonic Solids are based.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </article>
   );

@@ -1,25 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Gallery",
   description: "A visual gallery of Ffellonics geometric work — diagrams, models, and mathematical art.",
 };
-
-const GALLERY_ITEMS: {
-  src: string;
-  alt: string;
-  title: string;
-  description: string;
-}[] = [
-  // Add items here, e.g.:
-  // {
-  //   src: "/gallery/my-image.jpg",
-  //   alt: "Description of image",
-  //   title: "Title of Work",
-  //   description: "Text describing this piece of work.",
-  // },
-];
 
 export default function GalleryPage() {
   return (
@@ -29,29 +13,61 @@ export default function GalleryPage() {
       </h1>
       <div className="w-10 h-[1px] bg-[#b8862a] mb-10" />
 
-      {GALLERY_ITEMS.length === 0 ? (
-        <p className="font-serif italic text-[#7c6f64] text-lg">
-          Gallery coming soon.
-        </p>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {GALLERY_ITEMS.map((item) => (
-            <div key={item.src} className="flex flex-col">
-              <div className="relative w-full aspect-[4/3] overflow-hidden rounded-sm border border-[#ddd5c8]">
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-              </div>
-              <h2 className="font-serif text-lg text-[#0f2240] mt-4 mb-1">{item.title}</h2>
-              <p className="font-serif text-sm text-[#555] leading-relaxed">{item.description}</p>
+      <div className="space-y-20">
+
+        {/* Platonic Solids Composition 51 */}
+        <div className="border-t border-[#ddd5c8] pt-10">
+          <img
+            src="/gallery/platonic-solids-composition-51.svg"
+            alt="Platonic Solids Composition 51"
+            className="w-full max-w-[720px] mx-auto block mb-8"
+          />
+          <div className="max-w-[680px] mx-auto">
+            <h2 className="font-serif text-2xl text-[#0f2240] mb-4">
+              Platonic Solids — Composition 51
+            </h2>
+            <div className="font-serif text-[#333] leading-relaxed space-y-4">
+              <p>
+                The Platonic solids are five special three-dimensional shapes that are as perfectly
+                balanced and symmetrical as any solid object can be. Every face is exactly the same
+                regular polygon, every edge is the same length, and the same number of faces meet at
+                every corner. Because of this, you can turn or flip the shape so that any face, edge
+                or corner lands exactly where another one was.
+              </p>
+              <p>There are only five of them:</p>
+              <ul className="list-disc list-inside space-y-1 pl-2">
+                <li>the tetrahedron (a pyramid made of four equal triangles),</li>
+                <li>the cube (six equal squares),</li>
+                <li>the octahedron (eight equal triangles),</li>
+                <li>the dodecahedron (twelve equal pentagons),</li>
+                <li>the icosahedron (twenty equal triangles).</li>
+              </ul>
+              <p>
+                No other solid shape works this way. Each one has a matching &ldquo;partner&rdquo;
+                shape (its dual) that fits together with it perfectly, and the tetrahedron is its own
+                partner.
+              </p>
+              <p>
+                What makes them special is their extreme symmetry. You can rotate them in many
+                different ways and they still look identical. No other everyday solid objects have
+                this level of perfect balance.
+              </p>
+              <p>
+                The ancient philosopher Plato linked them to the basic elements of the world: the
+                tetrahedron to fire, the cube to earth, the octahedron to air, the icosahedron to
+                water, and the dodecahedron to the whole cosmos. Even today these shapes show up
+                wherever nature or design needs the highest possible symmetry — inside viruses,
+                crystals and certain carbon molecules.
+              </p>
+              <p>
+                In short, the Platonic solids are the purest examples of three-dimensional symmetry
+                that exist.
+              </p>
             </div>
-          ))}
+          </div>
         </div>
-      )}
+
+      </div>
     </article>
   );
 }

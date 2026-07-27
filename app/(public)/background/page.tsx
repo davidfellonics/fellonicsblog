@@ -668,6 +668,33 @@ export default function BackgroundPage() {
           </div>
         </section>
 
+        {/* V */}
+        <section>
+          <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">V</h2>
+          {/* Vector Equilibrium */}
+          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
+              Vector Equilibrium (VE)
+            </h3>
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
+              <p>
+                Vector Equilibrium (VE) is Buckminster Fuller&apos;s name for the
+                cuboctahedron — the unique polyhedron in which all vectors from the centre to
+                the 12 vertices equal the edge lengths. It arises naturally from closest-packing
+                12 equal spheres around a central sphere and represents perfect omnidirectional
+                force balance (zero net tension or compression).
+              </p>
+              <p>
+                The relation with Ffellonics is direct and is an explicit sequential extension of
+                Fuller&apos;s sphere-packing synergetics. The VE is the local geometry of every
+                unit&apos;s 12-neighbour coordination in Ffellonics&apos; terminal ground
+                state — the thermodynamic and relational equilibrium of maximum harmony and
+                efficiency.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* W */}
         <section>
           <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">W</h2>

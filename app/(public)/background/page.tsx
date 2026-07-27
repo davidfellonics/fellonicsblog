@@ -326,6 +326,37 @@ export default function BackgroundPage() {
             </div>
           </div>
 
+          {/* Fuller, R. Buckminster */}
+          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
+              Fuller, R. Buckminster{" "}
+              <span className="text-sm font-sans font-normal text-[#7c6f64]">(1895–1983)</span>
+            </h3>
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
+              <p>
+                R. Buckminster Fuller (1895–1983) was an American architect, designer, inventor,
+                systems theorist, and futurist. He popularized the geodesic dome — lightweight,
+                strong spherical structures based on triangular networks — and coined
+                &ldquo;ephemeralization&rdquo; (doing more with less). His Dymaxion inventions
+                (house, car, map) and &ldquo;Spaceship Earth&rdquo; philosophy aimed at efficient
+                design for all humanity. In <em>Synergetics</em>, he explored whole-system
+                behaviours, tetrahedral geometry, closest sphere packing, the isotropic vector
+                matrix (linked to 12-around-1 coordination), and tensegrity. Carbon fullerenes
+                (buckyballs) were later named for their resemblance to his domes.
+              </p>
+              <p>
+                Ffellonics (Geometry of Relational Emergence) is a modern framework of a 12-level
+                hierarchy in which identical spheres self-assemble by symmetric nearest-neighbour
+                attachment that maximises contacts and minimises free energy. It progresses from a
+                dyad (Level 1) through Platonic solids to the stable FCC/HCP lattice (Level 12,
+                maximum 12-fold coordination). It is explicitly a natural extension of Fuller&apos;s
+                sphere-packing vision in <em>Synergetics</em>, formalizing his ideas of closest
+                packing, tetrahedral systems, and hierarchical geometric efficiency into a clear
+                process of relational emergence linking geometry, thermodynamics, and order.
+              </p>
+            </div>
+          </div>
+
         </section>
 
         {/* G */}

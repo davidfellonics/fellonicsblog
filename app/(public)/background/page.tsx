@@ -234,6 +234,40 @@ export default function BackgroundPage() {
             </div>
           </div>
 
+          {/* First Touch */}
+          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
+              First Touch (First Ontological Touch)
+            </h3>
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
+              <p>
+                The first touch (also called the first ontological touch) is Level 1 — the
+                foundational event of the entire Ffellonic system.
+              </p>
+              <p>
+                It occurs when two previously isolated, identical spheres make contact for the
+                first time. Before this moment, the spheres exist only in pure potential: no
+                structure, no relation, no order, no &ldquo;reality&rdquo; in the meaningful sense.
+                The instant they touch:
+              </p>
+              <ul className="list-disc list-inside space-y-1 pl-2">
+                <li>A shared boundary is created.</li>
+                <li>Relation itself is born.</li>
+                <li>
+                  The single local rule activates (symmetric nearest-neighbour attachment that
+                  maximises contacts while minimising free energy).
+                </li>
+                <li>The 12-level hierarchy is set in motion.</li>
+              </ul>
+              <p>
+                From this one irreversible contact, the whole progression toward the stable 12-fold
+                FCC/HCP lattice (Level 12) is already latent. Ffellonics therefore treats the first
+                touch as the true beginning of ordered, relational existence:{" "}
+                <em>&ldquo;From one touch comes everything.&rdquo;</em>
+              </p>
+            </div>
+          </div>
+
           {/* Free Energy Principle */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl text-[#0f2240]">Free Energy Principle (FEP)</h3>

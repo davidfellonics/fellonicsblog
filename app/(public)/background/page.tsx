@@ -571,6 +571,38 @@ export default function BackgroundPage() {
           </div>
         </section>
 
+        {/* T */}
+        <section>
+          <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">T</h2>
+          {/* Teleology */}
+          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
+              Teleology
+            </h3>
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
+              <p>
+                Teleology is the philosophical study of purpose, ends, or final causes — explaining
+                things by their goals rather than only by mechanical causes.
+              </p>
+              <p>
+                Ffellonics shows a clear naturalistic teleology. From the first ontological touch
+                (Level 1), identical spheres follow one local rule: symmetric attachment that
+                maximises contacts while minimising free energy. This rule already contains an
+                &ldquo;implicit destiny&rdquo; that drives the system through a fixed 12-level
+                hierarchy toward the stable 12-fold FCC/HCP lattice (maximum coordination, minimum
+                tension).
+              </p>
+              <p>
+                The process is irreversible and end-directed purely by thermodynamics and
+                symmetry — no external designer or vital force is required. This is a form of{" "}
+                <strong>immanent teleology</strong> (or <em>teleonomy</em>): the system behaves as
+                if aiming at its ground state because that configuration is the global free-energy
+                minimum under the governing constraints.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* W */}
         <section>
           <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">W</h2>

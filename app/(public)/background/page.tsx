@@ -24,7 +24,7 @@ export default function BackgroundPage() {
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">A</h2>
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Algorithm</h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 A step-by-step set of instructions designed to solve a specific problem or
                 perform a task. It takes input, processes it through a series of logical,
@@ -44,7 +44,7 @@ export default function BackgroundPage() {
               Bohr, Niels{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(1885–1962)</span>
             </h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 A Danish physicist and one of the founding fathers of quantum mechanics. In 1913,
                 he proposed the revolutionary Bohr model of the atom, introducing quantised
@@ -71,7 +71,7 @@ export default function BackgroundPage() {
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">C</h2>
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Canalicchio Duals</h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 Also known as the Canalicchio dual series, these form one of the two
                 complementary sequences in Ffellonic geometry — a sphere-packing framework that
@@ -104,7 +104,7 @@ export default function BackgroundPage() {
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">D</h2>
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Dissipative Structure</h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 A self-organised system that maintains order by constantly dissipating — using
                 and exporting — energy. While the universe trends toward disorder, certain open
@@ -136,7 +136,7 @@ export default function BackgroundPage() {
               Euclid{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(c. 300 BCE)</span>
             </h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 An ancient Greek mathematician who lived and worked in Alexandria, Egypt, during
                 the reign of Ptolemy I. Often called the &ldquo;Father of Geometry,&rdquo; he is best
@@ -169,7 +169,7 @@ export default function BackgroundPage() {
           {/* Ffellonic Form */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Ffellonic Form</h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 A geometric structure created by connecting the centres of identical spheres that
                 have self-assembled freely and naturally according to a single local rule:
@@ -200,7 +200,7 @@ export default function BackgroundPage() {
           {/* Ffellonics */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Ffellonics</h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 Known as the geometry of relational emergence, Ffellonics is a minimalist
                 geometric-philosophical framework developed by David Fell. Presented on ffell.com
@@ -271,7 +271,7 @@ export default function BackgroundPage() {
           {/* Free Energy Principle */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Free Energy Principle (FEP)</h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 Developed by Karl Friston, the Free Energy Principle is a unifying mathematical
                 theory in neuroscience and biology. It proposes that all living systems — from
@@ -298,7 +298,7 @@ export default function BackgroundPage() {
               Friston, Karl{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(born 12 July 1959)</span>
             </h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 A British neuroscientist and theoretician widely regarded as one of the most
                 influential figures in modern brain science. He is Professor of Neuroscience at
@@ -364,7 +364,7 @@ export default function BackgroundPage() {
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">G</h2>
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Gibbs Free Energy (G)</h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 A key thermodynamic quantity that predicts whether a chemical reaction or process
                 can occur spontaneously at constant temperature and pressure.
@@ -400,7 +400,7 @@ export default function BackgroundPage() {
               Kauffman, Stuart{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(born 1939)</span>
             </h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 An American theoretical biologist, physician, and complex systems researcher
                 renowned for his work on the origin of life and self-organisation. A MacArthur
@@ -434,7 +434,7 @@ export default function BackgroundPage() {
               Levin, Michael{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(born 1969)</span>
             </h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 An American developmental and synthetic biologist at Tufts University, where he
                 is the Vannevar Bush Distinguished Professor of Biology. He directs the Allen
@@ -499,7 +499,7 @@ export default function BackgroundPage() {
               Plato{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(c. 428–347 BCE)</span>
             </h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 An ancient Greek philosopher widely regarded as one of the most important thinkers
                 in Western history. Born into an aristocratic Athenian family, he became a devoted
@@ -522,7 +522,7 @@ export default function BackgroundPage() {
           {/* Platonic Solids */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Platonic Solids</h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 The five perfectly regular three-dimensional shapes — every face is the same
                 polygon, every edge the same length, every vertex identical:
@@ -550,7 +550,7 @@ export default function BackgroundPage() {
               Prigogine, Ilya{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(1917–2003)</span>
             </h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 A Russian-Belgian physical chemist and Nobel laureate renowned for his pioneering
                 work on non-equilibrium thermodynamics and complex systems. Born in Moscow on
@@ -588,7 +588,7 @@ export default function BackgroundPage() {
           {/* Relational Emergence */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Relational Emergence</h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 When something new and meaningful arises not from individual parts, but from the
                 ongoing connections and interactions between them.
@@ -617,7 +617,7 @@ export default function BackgroundPage() {
           {/* Relational Self-Assembly */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Relational Self-Assembly</h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 A bottom-up process where simple, identical units — think spheres — spontaneously
                 form complex, ordered structures by following one local rule: attach to neighbours
@@ -669,7 +669,7 @@ export default function BackgroundPage() {
           {/* Symmetry */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Symmetry</h3>
-            <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
                 The quality of an object, system, or pattern that remains unchanged under certain
                 transformations. In geometry it appears as reflection (mirror symmetry), rotation

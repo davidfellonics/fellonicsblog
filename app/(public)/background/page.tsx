@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Background",
+  title: "Glossary",
   description: "A glossary of people and subjects mentioned in the Ffellonics essays, arranged alphabetically.",
 };
 
@@ -9,7 +9,7 @@ export default function BackgroundPage() {
   return (
     <article className="max-w-[680px] mx-auto px-4 sm:px-6 py-16">
       <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-5">
-        Background
+        Glossary
       </h1>
       <div className="w-10 h-[1px] bg-[#b8862a] mb-8" />
 

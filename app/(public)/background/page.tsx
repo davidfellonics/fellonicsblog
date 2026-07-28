@@ -493,6 +493,28 @@ export default function BackgroundPage() {
           </div>
         </section>
 
+        {/* O */}
+        <section>
+          <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">O</h2>
+          {/* Ontology */}
+          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
+              Ontology
+            </h3>
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
+              <p>
+                Ontology is the philosophical study of the nature of being, existence, and reality.
+                It examines what entities exist, their categories, and interrelations.
+              </p>
+              <p>
+                In computer science and artificial intelligence, an ontology is a formal
+                specification of concepts, properties, and relationships within a domain, used to
+                enable knowledge sharing and reasoning by machines.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* P */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">P</h2>

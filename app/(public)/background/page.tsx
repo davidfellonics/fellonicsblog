@@ -234,32 +234,6 @@ export default function BackgroundPage() {
             </div>
           </div>
 
-          {/* First Ontological Touch */}
-          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
-            <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
-              First Ontological Touch
-            </h3>
-            <div className="font-serif text-[#333] leading-relaxed space-y-3">
-              <p>
-                The &ldquo;first ontological touch&rdquo; in Ffellonics is the primordial contact
-                between two identical isotropic spheres (relational units).
-              </p>
-              <p>
-                Before it, units exist in pure potential — isolated, without structure, identity,
-                perspective, or order. This single act of attachment creates the Level-1 dyad: a
-                shared boundary, the first relation, and the birth of actual reality. It activates
-                the sole generative rule — symmetric nearest-neighbour attachment that maximises
-                contacts while minimising free energy.
-              </p>
-              <p>
-                From this minimal event the entire 12-level hierarchy of emergent geometric order
-                (Platonic solids, lattices, culminating in the 12-fold FCC/HCP ground state)
-                unfolds. Relation itself, not isolated substance, is therefore ontologically
-                primary.
-              </p>
-            </div>
-          </div>
-
           {/* First Touch */}
           <div className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">

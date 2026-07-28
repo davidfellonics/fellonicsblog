@@ -23,7 +23,7 @@ export default function BackgroundPage() {
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">A</h2>
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">Algorithm</h3>
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Algorithm</h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
               <p>
                 A step-by-step set of instructions designed to solve a specific problem or
@@ -40,7 +40,7 @@ export default function BackgroundPage() {
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">B</h2>
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Bohr, Niels{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(1885–1962)</span>
             </h3>
@@ -70,7 +70,7 @@ export default function BackgroundPage() {
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">C</h2>
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">Canalicchio Duals</h3>
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Canalicchio Duals</h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
               <p>
                 Also known as the Canalicchio dual series, these form one of the two
@@ -103,7 +103,7 @@ export default function BackgroundPage() {
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">D</h2>
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">Dissipative Structure</h3>
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Dissipative Structure</h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
               <p>
                 A self-organised system that maintains order by constantly dissipating — using
@@ -132,7 +132,7 @@ export default function BackgroundPage() {
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">E</h2>
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Euclid{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(c. 300 BCE)</span>
             </h3>
@@ -168,7 +168,7 @@ export default function BackgroundPage() {
 
           {/* Ffellonic Form */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
-            <h3 className="font-serif text-xl text-[#0f2240]">Ffellonic Form</h3>
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Ffellonic Form</h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
               <p>
                 A geometric structure created by connecting the centres of identical spheres that
@@ -199,7 +199,7 @@ export default function BackgroundPage() {
 
           {/* Ffellonics */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
-            <h3 className="font-serif text-xl text-[#0f2240]">Ffellonics</h3>
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Ffellonics</h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
               <p>
                 Known as the geometry of relational emergence, Ffellonics is a minimalist
@@ -270,7 +270,7 @@ export default function BackgroundPage() {
 
           {/* Free Energy Principle */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
-            <h3 className="font-serif text-xl text-[#0f2240]">Free Energy Principle (FEP)</h3>
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Free Energy Principle (FEP)</h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
               <p>
                 Developed by Karl Friston, the Free Energy Principle is a unifying mathematical
@@ -294,7 +294,7 @@ export default function BackgroundPage() {
 
           {/* Friston, Karl */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Friston, Karl{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(born 12 July 1959)</span>
             </h3>
@@ -363,7 +363,7 @@ export default function BackgroundPage() {
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">G</h2>
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">Gibbs Free Energy (G)</h3>
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Gibbs Free Energy (G)</h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
               <p>
                 A key thermodynamic quantity that predicts whether a chemical reaction or process
@@ -396,7 +396,7 @@ export default function BackgroundPage() {
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">K</h2>
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Kauffman, Stuart{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(born 1939)</span>
             </h3>
@@ -430,7 +430,7 @@ export default function BackgroundPage() {
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">L</h2>
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Levin, Michael{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(born 1969)</span>
             </h3>
@@ -495,7 +495,7 @@ export default function BackgroundPage() {
 
           {/* Plato */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
-            <h3 className="font-serif text-xl text-[#0f2240]">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Plato{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(c. 428–347 BCE)</span>
             </h3>
@@ -521,7 +521,7 @@ export default function BackgroundPage() {
 
           {/* Platonic Solids */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">Platonic Solids</h3>
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Platonic Solids</h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
               <p>
                 The five perfectly regular three-dimensional shapes — every face is the same
@@ -546,7 +546,7 @@ export default function BackgroundPage() {
 
           {/* Prigogine, Ilya */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Prigogine, Ilya{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(1917–2003)</span>
             </h3>
@@ -587,7 +587,7 @@ export default function BackgroundPage() {
 
           {/* Relational Emergence */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
-            <h3 className="font-serif text-xl text-[#0f2240]">Relational Emergence</h3>
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Relational Emergence</h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
               <p>
                 When something new and meaningful arises not from individual parts, but from the
@@ -616,7 +616,7 @@ export default function BackgroundPage() {
 
           {/* Relational Self-Assembly */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">Relational Self-Assembly</h3>
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Relational Self-Assembly</h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
               <p>
                 A bottom-up process where simple, identical units — think spheres — spontaneously
@@ -668,7 +668,7 @@ export default function BackgroundPage() {
 
           {/* Symmetry */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
-            <h3 className="font-serif text-xl text-[#0f2240]">Symmetry</h3>
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Symmetry</h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">
               <p>
                 The quality of an object, system, or pattern that remains unchanged under certain

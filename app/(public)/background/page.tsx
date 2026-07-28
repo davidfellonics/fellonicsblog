@@ -613,6 +613,38 @@ export default function BackgroundPage() {
         {/* S */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">S</h2>
+
+          {/* Symmetric Nearest-Neighbour Attachment */}
+          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+            <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
+              Symmetric Nearest-Neighbour Attachment Under Free-Energy Minimisation
+            </h3>
+            <div className="font-serif text-[#333] leading-relaxed space-y-3">
+              <p>
+                Symmetric nearest-neighbour attachment under free-energy minimisation is the single
+                local rule that generates the entire ordered hierarchy in Ffellonics.
+              </p>
+              <p>
+                Whenever a new sphere joins an existing cluster it follows three preferences at the
+                same time. First, it attaches only to the closest available sphere or spheres — it
+                does not leap across empty space. Second, the position it chooses must keep the
+                overall arrangement as balanced and regular as possible; lopsided or irregular
+                placements are avoided if a more even option exists. Third, among those nearest and
+                symmetric possibilities, it selects the one that most reduces the system&apos;s
+                free energy. Free energy is a measure of tension, instability and inefficiency;
+                nature prefers the more relaxed and stable arrangement.
+              </p>
+              <p>
+                Because every new sphere obeys this same simple rule, order emerges spontaneously.
+                No external blueprint or top-down plan is required. From the first contact onward,
+                the rule alone produces the progressive sequence of increasingly coordinated
+                structures, culminating in the final, fully balanced lattice in which every sphere
+                is harmoniously related to its neighbours.
+              </p>
+            </div>
+          </div>
+
+          {/* Symmetry */}
           <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl text-[#0f2240]">Symmetry</h3>
             <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-3">

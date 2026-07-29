@@ -1,3 +1,11 @@
+export interface GlossaryEntry {
+  id: string;
+  term: string;
+  date_range: string | null;
+  body: string;
+  created_at: string;
+}
+
 export interface Profile {
   id: string;
   full_name: string;
@@ -60,6 +68,24 @@ export interface PostTag {
 export type Database = {
   public: {
     Tables: {
+      glossary_entries: {
+        Row: GlossaryEntry;
+        Insert: {
+          id?: string;
+          term: string;
+          date_range?: string | null;
+          body: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          term?: string;
+          date_range?: string | null;
+          body?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
       profiles: {
         Row: Profile;
         Insert: Omit<Profile, "created_at"> & { created_at?: string };

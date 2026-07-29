@@ -80,6 +80,25 @@ create policy "Author can manage all comments"
     exists (select 1 from profiles where id = auth.uid())
   );
 
+-- Glossary Entries
+create table glossary_entries (
+  id uuid default gen_random_uuid() primary key,
+  term text not null,
+  date_range text,
+  body text not null,
+  created_at timestamptz default now()
+);
+
+alter table glossary_entries enable row level security;
+
+create policy "Public can read glossary entries"
+  on glossary_entries for select using (true);
+
+create policy "Authenticated users can manage glossary entries"
+  on glossary_entries for all using (auth.uid() is not null);
+
+create index glossary_entries_term_idx on glossary_entries(term);
+
 -- Indexes for performance
 create index posts_slug_idx on posts(slug);
 create index posts_status_published_at_idx on posts(status, published_at desc);

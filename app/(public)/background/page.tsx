@@ -1,11 +1,38 @@
 import type { Metadata } from "next";
+import { createPublicClient } from "@/lib/supabase/server";
+import type { GlossaryEntry } from "@/types";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Glossary",
   description: "A glossary of people and subjects mentioned in the Ffellonics essays, arranged alphabetically.",
 };
 
-export default function BackgroundPage() {
+async function getGlossaryEntries(): Promise<GlossaryEntry[]> {
+  try {
+    const supabase = createPublicClient();
+    const { data } = await supabase
+      .from("glossary_entries")
+      .select("*")
+      .order("term", { ascending: true });
+    return (data ?? []) as GlossaryEntry[];
+  } catch {
+    return [];
+  }
+}
+
+export default async function BackgroundPage() {
+  const dbEntries = await getGlossaryEntries();
+
+  const dbByLetter: Record<string, GlossaryEntry[]> = {};
+  for (const entry of dbEntries) {
+    const letter = entry.term[0].toUpperCase();
+    if (!dbByLetter[letter]) dbByLetter[letter] = [];
+    dbByLetter[letter].push(entry);
+  }
+  const dbLetters = Object.keys(dbByLetter).sort();
+
   return (
     <article className="max-w-[680px] mx-auto px-4 sm:px-6 py-16">
       <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-5">
@@ -786,6 +813,30 @@ export default function BackgroundPage() {
             </div>
           </div>
         </section>
+
+        {/* Database entries — added via admin Glossary Data form */}
+        {dbLetters.map((letter) => (
+          <section key={letter}>
+            <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">{letter}</h2>
+            {dbByLetter[letter].map((entry) => (
+              <div key={entry.id} className="border-t border-[#ddd5c8] pt-6 pb-6">
+                <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
+                  {entry.term}
+                  {entry.date_range && (
+                    <span className="text-sm font-sans font-normal text-[#7c6f64] ml-2">
+                      {entry.date_range}
+                    </span>
+                  )}
+                </h3>
+                <div className="font-serif text-[#333] leading-relaxed space-y-3">
+                  {entry.body.split("\n\n").map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </section>
+        ))}
 
       </div>
     </article>

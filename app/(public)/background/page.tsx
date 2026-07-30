@@ -9,6 +9,41 @@ export const metadata: Metadata = {
   description: "A glossary of people and subjects mentioned in the Ffellonics essays, arranged alphabetically.",
 };
 
+function DbEntries({ letter, dbByLetter }: { letter: string; dbByLetter: Record<string, GlossaryEntry[]> }) {
+  return (
+    <>
+      {(dbByLetter[letter] ?? []).map((entry) => (
+        <div key={entry.id} className="border-t border-[#ddd5c8] pt-6 pb-6">
+          <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
+            {entry.term}
+            {entry.date_range && (
+              <span className="text-sm font-sans font-normal text-[#7c6f64] ml-2">{entry.date_range}</span>
+            )}
+          </h3>
+          <div className="font-serif text-[#333] leading-relaxed space-y-3">
+            {entry.body.split("\n\n").map((para, i) => <p key={i}>{para}</p>)}
+          </div>
+        </div>
+      ))}
+    </>
+  );
+}
+
+function DbLetterSections({ letters, dbByLetter }: { letters: string[]; dbByLetter: Record<string, GlossaryEntry[]> }) {
+  const active = letters.filter((l) => (dbByLetter[l] ?? []).length > 0);
+  if (active.length === 0) return null;
+  return (
+    <>
+      {active.map((letter) => (
+        <section key={letter}>
+          <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">{letter}</h2>
+          <DbEntries letter={letter} dbByLetter={dbByLetter} />
+        </section>
+      ))}
+    </>
+  );
+}
+
 async function getGlossaryEntries(): Promise<GlossaryEntry[]> {
   try {
     const supabase = createPublicClient();
@@ -31,8 +66,6 @@ export default async function BackgroundPage() {
     if (!dbByLetter[letter]) dbByLetter[letter] = [];
     dbByLetter[letter].push(entry);
   }
-  const dbLetters = Object.keys(dbByLetter).sort();
-
   return (
     <article className="max-w-[680px] mx-auto px-4 sm:px-6 py-16">
       <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-5">
@@ -61,6 +94,7 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
+          <DbEntries letter="A" dbByLetter={dbByLetter} />
         </section>
 
         {/* B */}
@@ -91,6 +125,7 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
+          <DbEntries letter="B" dbByLetter={dbByLetter} />
         </section>
 
         {/* C */}
@@ -124,6 +159,7 @@ export default async function BackgroundPage() {
               </div>
             </div>
           </div>
+          <DbEntries letter="C" dbByLetter={dbByLetter} />
         </section>
 
         {/* D */}
@@ -153,6 +189,7 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
+          <DbEntries letter="D" dbByLetter={dbByLetter} />
         </section>
 
         {/* E */}
@@ -187,6 +224,7 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
+          <DbEntries letter="E" dbByLetter={dbByLetter} />
         </section>
 
         {/* F */}
@@ -384,6 +422,7 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
+          <DbEntries letter="F" dbByLetter={dbByLetter} />
         </section>
 
         {/* G */}
@@ -417,7 +456,10 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
+          <DbEntries letter="G" dbByLetter={dbByLetter} />
         </section>
+
+        <DbLetterSections letters={["H", "I", "J"]} dbByLetter={dbByLetter} />
 
         {/* K */}
         <section>
@@ -451,6 +493,7 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
+          <DbEntries letter="K" dbByLetter={dbByLetter} />
         </section>
 
         {/* L */}
@@ -492,7 +535,10 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
+          <DbEntries letter="L" dbByLetter={dbByLetter} />
         </section>
+
+        <DbLetterSections letters={["M", "N"]} dbByLetter={dbByLetter} />
 
         {/* O */}
         <section>
@@ -514,6 +560,7 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
+          <DbEntries letter="O" dbByLetter={dbByLetter} />
         </section>
 
         {/* P */}
@@ -606,7 +653,10 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
+          <DbEntries letter="P" dbByLetter={dbByLetter} />
         </section>
+
+        <DbLetterSections letters={["Q"]} dbByLetter={dbByLetter} />
 
         {/* R */}
         <section>
@@ -657,6 +707,7 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
+          <DbEntries letter="R" dbByLetter={dbByLetter} />
         </section>
 
         {/* S */}
@@ -715,6 +766,7 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
+          <DbEntries letter="S" dbByLetter={dbByLetter} />
         </section>
 
         {/* T */}
@@ -747,7 +799,10 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
+          <DbEntries letter="T" dbByLetter={dbByLetter} />
         </section>
+
+        <DbLetterSections letters={["U"]} dbByLetter={dbByLetter} />
 
         {/* V */}
         <section>
@@ -774,6 +829,7 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
+          <DbEntries letter="V" dbByLetter={dbByLetter} />
         </section>
 
         {/* W */}
@@ -812,31 +868,10 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
+          <DbEntries letter="W" dbByLetter={dbByLetter} />
         </section>
 
-        {/* Database entries — added via admin Glossary Data form */}
-        {dbLetters.map((letter) => (
-          <section key={letter}>
-            <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">{letter}</h2>
-            {dbByLetter[letter].map((entry) => (
-              <div key={entry.id} className="border-t border-[#ddd5c8] pt-6 pb-6">
-                <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
-                  {entry.term}
-                  {entry.date_range && (
-                    <span className="text-sm font-sans font-normal text-[#7c6f64] ml-2">
-                      {entry.date_range}
-                    </span>
-                  )}
-                </h3>
-                <div className="font-serif text-[#333] leading-relaxed space-y-3">
-                  {entry.body.split("\n\n").map((para, i) => (
-                    <p key={i}>{para}</p>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </section>
-        ))}
+        <DbLetterSections letters={["X", "Y", "Z"]} dbByLetter={dbByLetter} />
 
       </div>
     </article>

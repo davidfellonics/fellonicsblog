@@ -97,6 +97,13 @@ export default function GlossaryForm({ initialEntries }: Props) {
             Separate paragraphs with a blank line. The entry will appear on the Glossary page
             alphabetically by Term.
           </p>
+          <p className="text-xs text-[#6b7280] font-sans mt-1">
+            To link to another Glossary entry, use{" "}
+            <code className="bg-[#f3f4f6] px-1 rounded">[word](#anchor)</code> — for example{" "}
+            <code className="bg-[#f3f4f6] px-1 rounded">[Platonic Solids](#platonic-solids)</code>{" "}
+            or <code className="bg-[#f3f4f6] px-1 rounded">[Teleology](#teleology)</code>.
+            The anchor is the term lowercased with spaces replaced by hyphens.
+          </p>
           <textarea
             value={body}
             onChange={(e) => setBody(e.target.value)}

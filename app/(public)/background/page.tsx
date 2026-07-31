@@ -9,11 +9,38 @@ export const metadata: Metadata = {
   description: "A glossary of people and subjects mentioned in the Ffellonics essays, arranged alphabetically.",
 };
 
+function slugify(term: string) {
+  return term
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
+function renderWithLinks(text: string): React.ReactNode[] {
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const parts: React.ReactNode[] = [];
+  let last = 0;
+  let m: RegExpExecArray | null;
+  while ((m = regex.exec(text)) !== null) {
+    if (m.index > last) parts.push(text.slice(last, m.index));
+    parts.push(
+      <a key={m.index} href={m[2]} className="text-[#b8862a] hover:underline">
+        {m[1]}
+      </a>
+    );
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts;
+}
+
 function DbEntries({ letter, dbByLetter }: { letter: string; dbByLetter: Record<string, GlossaryEntry[]> }) {
   return (
     <>
       {(dbByLetter[letter] ?? []).map((entry) => (
-        <div key={entry.id} className="border-t border-[#ddd5c8] pt-6 pb-6">
+        <div key={entry.id} id={slugify(entry.term)} className="border-t border-[#ddd5c8] pt-6 pb-6">
           <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
             {entry.term}
             {entry.date_range && (
@@ -21,7 +48,7 @@ function DbEntries({ letter, dbByLetter }: { letter: string; dbByLetter: Record<
             )}
           </h3>
           <div className="font-serif text-[#333] leading-relaxed space-y-3">
-            {entry.body.split("\n\n").map((para, i) => <p key={i}>{para}</p>)}
+            {entry.body.split("\n\n").map((para, i) => <p key={i}>{renderWithLinks(para)}</p>)}
           </div>
         </div>
       ))}
@@ -82,7 +109,7 @@ export default async function BackgroundPage() {
         {/* A */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">A</h2>
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+          <div id="algorithm" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Algorithm</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
@@ -100,7 +127,7 @@ export default async function BackgroundPage() {
         {/* B */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">B</h2>
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+          <div id="bohr-niels" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Bohr, Niels{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(1885–1962)</span>
@@ -131,7 +158,7 @@ export default async function BackgroundPage() {
         {/* C */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">C</h2>
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+          <div id="canalicchio-duals" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Canalicchio Duals</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
@@ -165,7 +192,7 @@ export default async function BackgroundPage() {
         {/* D */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">D</h2>
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+          <div id="dissipative-structure" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Dissipative Structure</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
@@ -195,7 +222,7 @@ export default async function BackgroundPage() {
         {/* E */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">E</h2>
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+          <div id="euclid" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Euclid{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(c. 300 BCE)</span>
@@ -232,7 +259,7 @@ export default async function BackgroundPage() {
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">F</h2>
 
           {/* Ffellonic Form */}
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
+          <div id="ffellonic-form" className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Ffellonic Form</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
@@ -263,7 +290,7 @@ export default async function BackgroundPage() {
           </div>
 
           {/* Ffellonics */}
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
+          <div id="ffellonics" className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Ffellonics</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
@@ -300,7 +327,7 @@ export default async function BackgroundPage() {
           </div>
 
           {/* First Touch */}
-          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+          <div id="first-touch" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
               First Touch (First Ontological Touch)
             </h3>
@@ -334,7 +361,7 @@ export default async function BackgroundPage() {
           </div>
 
           {/* Free Energy Principle */}
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
+          <div id="free-energy-principle" className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Free Energy Principle (FEP)</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
@@ -358,7 +385,7 @@ export default async function BackgroundPage() {
           </div>
 
           {/* Friston, Karl */}
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+          <div id="friston-karl" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Friston, Karl{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(born 12 July 1959)</span>
@@ -392,7 +419,7 @@ export default async function BackgroundPage() {
           </div>
 
           {/* Fuller, R. Buckminster */}
-          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+          <div id="fuller-r-buckminster" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
               Fuller, R. Buckminster{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(1895–1983)</span>
@@ -428,7 +455,7 @@ export default async function BackgroundPage() {
         {/* G */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">G</h2>
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+          <div id="gibbs-free-energy" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Gibbs Free Energy (G)</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
@@ -464,7 +491,7 @@ export default async function BackgroundPage() {
         {/* K */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">K</h2>
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+          <div id="kauffman-stuart" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Kauffman, Stuart{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(born 1939)</span>
@@ -499,7 +526,7 @@ export default async function BackgroundPage() {
         {/* L */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">L</h2>
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+          <div id="levin-michael" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Levin, Michael{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(born 1969)</span>
@@ -544,7 +571,7 @@ export default async function BackgroundPage() {
         <section>
           <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">O</h2>
           {/* Ontology */}
-          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+          <div id="ontology" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
               Ontology
             </h3>
@@ -568,7 +595,7 @@ export default async function BackgroundPage() {
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">P</h2>
 
           {/* Plato */}
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
+          <div id="plato" className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Plato{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(c. 428–347 BCE)</span>
@@ -594,7 +621,7 @@ export default async function BackgroundPage() {
           </div>
 
           {/* Platonic Solids */}
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+          <div id="platonic-solids" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Platonic Solids</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
@@ -619,7 +646,7 @@ export default async function BackgroundPage() {
           </div>
 
           {/* Prigogine, Ilya */}
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+          <div id="prigogine-ilya" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Prigogine, Ilya{" "}
               <span className="text-sm font-sans font-normal text-[#7c6f64]">(1917–2003)</span>
@@ -663,7 +690,7 @@ export default async function BackgroundPage() {
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">R</h2>
 
           {/* Relational Emergence */}
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
+          <div id="relational-emergence" className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Relational Emergence</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
@@ -692,7 +719,7 @@ export default async function BackgroundPage() {
           </div>
 
           {/* Relational Self-Assembly */}
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+          <div id="relational-self-assembly" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Relational Self-Assembly</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
@@ -715,7 +742,7 @@ export default async function BackgroundPage() {
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">S</h2>
 
           {/* Symmetric Nearest-Neighbour Attachment */}
-          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+          <div id="symmetric-nearest-neighbour-attachment" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
               Symmetric Nearest-Neighbour Attachment Under Free-Energy Minimisation
             </h3>
@@ -745,7 +772,7 @@ export default async function BackgroundPage() {
           </div>
 
           {/* Symmetry */}
-          <div className="border-t border-[#ddd5c8] pt-6 space-y-2">
+          <div id="symmetry" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Symmetry</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
               <p>
@@ -773,7 +800,7 @@ export default async function BackgroundPage() {
         <section>
           <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">T</h2>
           {/* Teleology */}
-          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+          <div id="teleology" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
               Teleology
             </h3>
@@ -808,7 +835,7 @@ export default async function BackgroundPage() {
         <section>
           <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">V</h2>
           {/* Vector Equilibrium */}
-          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+          <div id="vector-equilibrium" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
               Vector Equilibrium (VE)
             </h3>
@@ -836,7 +863,7 @@ export default async function BackgroundPage() {
         <section>
           <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">W</h2>
           {/* Whitehead, Alfred North */}
-          <div className="border-t border-[#ddd5c8] pt-6 pb-6">
+          <div id="whitehead-alfred-north" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
               Whitehead, Alfred North (1861–1947)
             </h3>

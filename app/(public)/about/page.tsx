@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { createPublicClient } from "@/lib/supabase/server";
 import type { Profile } from "@/types";
 
@@ -9,6 +11,16 @@ export const metadata: Metadata = {
   title: "About",
   description: "Ffellonics is a philosophical and geometric model of relational self-assembly, inspired by physics, sphere-packing mathematics, and ancient metaphysics.",
 };
+
+async function getAboutContent(): Promise<string> {
+  try {
+    const supabase = createPublicClient();
+    const { data } = await supabase.from("pages").select("content").eq("key", "about").single();
+    return (data as { content: string } | null)?.content ?? "";
+  } catch {
+    return "";
+  }
+}
 
 async function getAuthor(): Promise<Profile | null> {
   try {
@@ -21,7 +33,7 @@ async function getAuthor(): Promise<Profile | null> {
 }
 
 export default async function AboutPage() {
-  const author = await getAuthor();
+  const [content, author] = await Promise.all([getAboutContent(), getAuthor()]);
 
   return (
     <article className="max-w-[680px] mx-auto px-4 sm:px-6 py-16">
@@ -40,53 +52,21 @@ export default async function AboutPage() {
         />
       )}
 
-      <div className="prose prose-lg max-w-none font-serif text-[#1a1614] leading-relaxed space-y-5">
-        <p>
-          Ffellonics is a modern philosophical and geometric model of relational
-          self-assembly, which proposes that physical reality and ordered structures
-          naturally emerge from identical units following simple, local rules.
-        </p>
-        <p>
-          The model is heavily inspired by physics, sphere-packing mathematics, and ancient
-          metaphysics (such as Platonic solids and Taoism). It treats the universe not as a
-          collection of fixed substances, but as a dynamic network of connections.
-        </p>
-
-        <h2>Core Principles of Ffellonics</h2>
-        <ul>
-          <li>
-            <strong>Energy Minimization</strong> — The fundamental driving force is
-            &ldquo;symmetric nearest-neighbor attachment under free-energy minimization.&rdquo;
-            Structures form automatically by finding the configuration with the least
-            internal tension.
-          </li>
-          <li>
-            <strong>The 12-Stage Hierarchy</strong> — The model outlines a deterministic
-            12-stage progression. It starts from a single point of contact (&ldquo;ontological
-            touch&rdquo;) and builds up to a stable &ldquo;12-fold ground state,&rdquo; where a
-            maximum of 12 spheres can naturally pack around a central unit.
-          </li>
-          <li>
-            <strong>The Principle of Least Resistance</strong> — Heavily mirroring the
-            Eastern concept of wu wei (effortless flow) and the physics principle of least
-            action, Ffellonics argues that nature organizes itself the way water finds its
-            level — without forced complexity.
-          </li>
-          <li>
-            <strong>Connecting Lines over Substance</strong> — In Ffellonic geometry, the
-            focus is not on the &ldquo;spheres&rdquo; themselves, but on the connecting lines
-            and relationships that describe how those spheres cluster together.
-          </li>
-        </ul>
-
-        <p>
-          The framework is actively discussed on platforms like the Ffellonics X Profile and
-          explored deeply in essays such as <em>The Principle of Least Resistance</em> and{" "}
-          <em>Computability Theory and Ffellonics</em>. It serves as a minimalist, relational
-          alternative to traditional &ldquo;Theory of Everything&rdquo; models.
-        </p>
-
-        {author?.bio && <p>{author.bio}</p>}
+      <div className="font-serif text-[#1a1614] leading-relaxed space-y-5
+        [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-[#0f2240] [&_h2]:mt-8 [&_h2]:mb-3
+        [&_h3]:font-serif [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-[#0f2240] [&_h3]:mt-6 [&_h3]:mb-2
+        [&_p]:leading-relaxed
+        [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2
+        [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2
+        [&_li]:leading-relaxed
+        [&_strong]:font-semibold [&_strong]:text-[#0f2240]
+        [&_em]:italic
+        [&_a]:text-[#b8862a] [&_a]:hover:underline
+        [&_blockquote]:border-l-2 [&_blockquote]:border-[#b8862a] [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-[#7c6f64]">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {content}
+        </ReactMarkdown>
+        {author?.bio && <p className="mt-6">{author.bio}</p>}
       </div>
     </article>
   );

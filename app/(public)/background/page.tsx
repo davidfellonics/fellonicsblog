@@ -155,20 +155,15 @@ export default async function BackgroundPage() {
 
       <nav className="mb-12 border border-[#ddd5c8] rounded-lg p-5 bg-[#faf8f5]">
         {indexLetters.map(letter => (
-          <div key={letter} className="mb-2 leading-relaxed">
-            <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-[#b8862a] inline-block w-5 shrink-0 mt-0.5 align-top">{letter}</span>
-            <span className="inline">
-              {indexByLetter[letter].map((entry, i) => (
-                <span key={entry.anchor}>
-                  <a href={`#${entry.anchor}`} className="font-serif text-sm text-[#0f2240] hover:text-[#b8862a] hover:underline transition-colors">
-                    {entry.label}
-                  </a>
-                  {i < indexByLetter[letter].length - 1 && (
-                    <span className="text-[#c5b8aa] mx-2">·</span>
-                  )}
-                </span>
-              ))}
-            </span>
+          <div key={letter} className="mb-4">
+            <div className="font-sans text-[10px] font-bold uppercase tracking-widest text-[#b8862a] mb-1">{letter}</div>
+            {indexByLetter[letter].map(entry => (
+              <div key={entry.anchor}>
+                <a href={`#${entry.anchor}`} className="font-serif text-sm text-[#0f2240] hover:text-[#b8862a] hover:underline transition-colors">
+                  {entry.label}
+                </a>
+              </div>
+            ))}
           </div>
         ))}
       </nav>

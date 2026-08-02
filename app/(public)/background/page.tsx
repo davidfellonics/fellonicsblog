@@ -36,10 +36,18 @@ function renderWithLinks(text: string): React.ReactNode[] {
   return parts;
 }
 
-function DbEntries({ letter, dbByLetter }: { letter: string; dbByLetter: Record<string, GlossaryEntry[]> }) {
+function DbEntries({ letter, dbByLetter, afterTerm, beforeTerm }: {
+  letter: string;
+  dbByLetter: Record<string, GlossaryEntry[]>;
+  afterTerm?: string;
+  beforeTerm?: string;
+}) {
+  let entries = dbByLetter[letter] ?? [];
+  if (afterTerm !== undefined) entries = entries.filter(e => e.term.toLowerCase() > afterTerm.toLowerCase());
+  if (beforeTerm !== undefined) entries = entries.filter(e => e.term.toLowerCase() < beforeTerm.toLowerCase());
   return (
     <>
-      {(dbByLetter[letter] ?? []).map((entry) => (
+      {entries.map((entry) => (
         <div key={entry.id} id={slugify(entry.term)} className="border-t border-[#ddd5c8] pt-6 pb-6">
           <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
             {entry.term}
@@ -109,6 +117,7 @@ export default async function BackgroundPage() {
         {/* A */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">A</h2>
+          <DbEntries letter="A" dbByLetter={dbByLetter} beforeTerm="Algorithm" />
           <div id="algorithm" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Algorithm</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
@@ -121,12 +130,13 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
-          <DbEntries letter="A" dbByLetter={dbByLetter} />
+          <DbEntries letter="A" dbByLetter={dbByLetter} afterTerm="Algorithm" />
         </section>
 
         {/* B */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">B</h2>
+          <DbEntries letter="B" dbByLetter={dbByLetter} beforeTerm="Bohr, Niels" />
           <div id="bohr-niels" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Bohr, Niels{" "}
@@ -152,12 +162,13 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
-          <DbEntries letter="B" dbByLetter={dbByLetter} />
+          <DbEntries letter="B" dbByLetter={dbByLetter} afterTerm="Bohr, Niels" />
         </section>
 
         {/* C */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">C</h2>
+          <DbEntries letter="C" dbByLetter={dbByLetter} beforeTerm="Canalicchio Duals" />
           <div id="canalicchio-duals" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Canalicchio Duals</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
@@ -186,12 +197,13 @@ export default async function BackgroundPage() {
               </div>
             </div>
           </div>
-          <DbEntries letter="C" dbByLetter={dbByLetter} />
+          <DbEntries letter="C" dbByLetter={dbByLetter} afterTerm="Canalicchio Duals" />
         </section>
 
         {/* D */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">D</h2>
+          <DbEntries letter="D" dbByLetter={dbByLetter} beforeTerm="Dissipative Structure" />
           <div id="dissipative-structure" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Dissipative Structure</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
@@ -216,12 +228,13 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
-          <DbEntries letter="D" dbByLetter={dbByLetter} />
+          <DbEntries letter="D" dbByLetter={dbByLetter} afterTerm="Dissipative Structure" />
         </section>
 
         {/* E */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">E</h2>
+          <DbEntries letter="E" dbByLetter={dbByLetter} beforeTerm="Euclid" />
           <div id="euclid" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Euclid{" "}
@@ -251,13 +264,14 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
-          <DbEntries letter="E" dbByLetter={dbByLetter} />
+          <DbEntries letter="E" dbByLetter={dbByLetter} afterTerm="Euclid" />
         </section>
 
         {/* F */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">F</h2>
 
+          <DbEntries letter="F" dbByLetter={dbByLetter} beforeTerm="Ffellonic Form" />
           {/* Ffellonic Form */}
           <div id="ffellonic-form" className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Ffellonic Form</h3>
@@ -289,6 +303,7 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
+          <DbEntries letter="F" dbByLetter={dbByLetter} afterTerm="Ffellonic Form" beforeTerm="Ffellonics" />
           {/* Ffellonics */}
           <div id="ffellonics" className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Ffellonics</h3>
@@ -326,6 +341,7 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
+          <DbEntries letter="F" dbByLetter={dbByLetter} afterTerm="Ffellonics" beforeTerm="First Touch" />
           {/* First Touch */}
           <div id="first-touch" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
@@ -360,6 +376,7 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
+          <DbEntries letter="F" dbByLetter={dbByLetter} afterTerm="First Touch" beforeTerm="Free Energy Principle" />
           {/* Free Energy Principle */}
           <div id="free-energy-principle" className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Free Energy Principle (FEP)</h3>
@@ -384,6 +401,7 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
+          <DbEntries letter="F" dbByLetter={dbByLetter} afterTerm="Free Energy Principle" beforeTerm="Friston, Karl" />
           {/* Friston, Karl */}
           <div id="friston-karl" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
@@ -418,6 +436,7 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
+          <DbEntries letter="F" dbByLetter={dbByLetter} afterTerm="Friston, Karl" beforeTerm="Fuller, R. Buckminster" />
           {/* Fuller, R. Buckminster */}
           <div id="fuller-r-buckminster" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
@@ -449,12 +468,13 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
-          <DbEntries letter="F" dbByLetter={dbByLetter} />
+          <DbEntries letter="F" dbByLetter={dbByLetter} afterTerm="Fuller, R. Buckminster" />
         </section>
 
         {/* G */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">G</h2>
+          <DbEntries letter="G" dbByLetter={dbByLetter} beforeTerm="Gibbs Free Energy" />
           <div id="gibbs-free-energy" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Gibbs Free Energy (G)</h3>
             <div className="font-serif text-[#333] leading-relaxed space-y-3">
@@ -483,7 +503,7 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
-          <DbEntries letter="G" dbByLetter={dbByLetter} />
+          <DbEntries letter="G" dbByLetter={dbByLetter} afterTerm="Gibbs Free Energy" />
         </section>
 
         <DbLetterSections letters={["H", "I", "J"]} dbByLetter={dbByLetter} />
@@ -491,6 +511,7 @@ export default async function BackgroundPage() {
         {/* K */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">K</h2>
+          <DbEntries letter="K" dbByLetter={dbByLetter} beforeTerm="Kauffman, Stuart" />
           <div id="kauffman-stuart" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Kauffman, Stuart{" "}
@@ -520,12 +541,13 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
-          <DbEntries letter="K" dbByLetter={dbByLetter} />
+          <DbEntries letter="K" dbByLetter={dbByLetter} afterTerm="Kauffman, Stuart" />
         </section>
 
         {/* L */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">L</h2>
+          <DbEntries letter="L" dbByLetter={dbByLetter} beforeTerm="Levin, Michael" />
           <div id="levin-michael" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
               Levin, Michael{" "}
@@ -562,7 +584,7 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
-          <DbEntries letter="L" dbByLetter={dbByLetter} />
+          <DbEntries letter="L" dbByLetter={dbByLetter} afterTerm="Levin, Michael" />
         </section>
 
         <DbLetterSections letters={["M", "N"]} dbByLetter={dbByLetter} />
@@ -570,6 +592,7 @@ export default async function BackgroundPage() {
         {/* O */}
         <section>
           <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">O</h2>
+          <DbEntries letter="O" dbByLetter={dbByLetter} beforeTerm="Ontology" />
           {/* Ontology */}
           <div id="ontology" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
@@ -587,13 +610,14 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
-          <DbEntries letter="O" dbByLetter={dbByLetter} />
+          <DbEntries letter="O" dbByLetter={dbByLetter} afterTerm="Ontology" />
         </section>
 
         {/* P */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">P</h2>
 
+          <DbEntries letter="P" dbByLetter={dbByLetter} beforeTerm="Plato" />
           {/* Plato */}
           <div id="plato" className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
@@ -620,6 +644,7 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
+          <DbEntries letter="P" dbByLetter={dbByLetter} afterTerm="Plato" beforeTerm="Platonic Solids" />
           {/* Platonic Solids */}
           <div id="platonic-solids" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Platonic Solids</h3>
@@ -645,6 +670,7 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
+          <DbEntries letter="P" dbByLetter={dbByLetter} afterTerm="Platonic Solids" beforeTerm="Prigogine, Ilya" />
           {/* Prigogine, Ilya */}
           <div id="prigogine-ilya" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">
@@ -680,7 +706,7 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
-          <DbEntries letter="P" dbByLetter={dbByLetter} />
+          <DbEntries letter="P" dbByLetter={dbByLetter} afterTerm="Prigogine, Ilya" />
         </section>
 
         <DbLetterSections letters={["Q"]} dbByLetter={dbByLetter} />
@@ -689,6 +715,7 @@ export default async function BackgroundPage() {
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">R</h2>
 
+          <DbEntries letter="R" dbByLetter={dbByLetter} beforeTerm="Relational Emergence" />
           {/* Relational Emergence */}
           <div id="relational-emergence" className="border-t border-[#ddd5c8] pt-6 space-y-2 mb-8">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Relational Emergence</h3>
@@ -718,6 +745,7 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
+          <DbEntries letter="R" dbByLetter={dbByLetter} afterTerm="Relational Emergence" beforeTerm="Relational Self-Assembly" />
           {/* Relational Self-Assembly */}
           <div id="relational-self-assembly" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Relational Self-Assembly</h3>
@@ -734,13 +762,14 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
-          <DbEntries letter="R" dbByLetter={dbByLetter} />
+          <DbEntries letter="R" dbByLetter={dbByLetter} afterTerm="Relational Self-Assembly" />
         </section>
 
         {/* S */}
         <section>
           <h2 className="font-sans text-xs uppercase tracking-widest text-[#b8862a] mb-4">S</h2>
 
+          <DbEntries letter="S" dbByLetter={dbByLetter} beforeTerm="Symmetric" />
           {/* Symmetric Nearest-Neighbour Attachment */}
           <div id="symmetric-nearest-neighbour-attachment" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
@@ -771,6 +800,7 @@ export default async function BackgroundPage() {
             </div>
           </div>
 
+          <DbEntries letter="S" dbByLetter={dbByLetter} afterTerm="Symmetric Nearest" beforeTerm="Symmetry" />
           {/* Symmetry */}
           <div id="symmetry" className="border-t border-[#ddd5c8] pt-6 space-y-2">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240]">Symmetry</h3>
@@ -793,12 +823,13 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
-          <DbEntries letter="S" dbByLetter={dbByLetter} />
+          <DbEntries letter="S" dbByLetter={dbByLetter} afterTerm="Symmetry" />
         </section>
 
         {/* T */}
         <section>
           <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">T</h2>
+          <DbEntries letter="T" dbByLetter={dbByLetter} beforeTerm="Teleology" />
           {/* Teleology */}
           <div id="teleology" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
@@ -826,7 +857,7 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
-          <DbEntries letter="T" dbByLetter={dbByLetter} />
+          <DbEntries letter="T" dbByLetter={dbByLetter} afterTerm="Teleology" />
         </section>
 
         <DbLetterSections letters={["U"]} dbByLetter={dbByLetter} />
@@ -834,6 +865,7 @@ export default async function BackgroundPage() {
         {/* V */}
         <section>
           <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">V</h2>
+          <DbEntries letter="V" dbByLetter={dbByLetter} beforeTerm="Vector Equilibrium" />
           {/* Vector Equilibrium */}
           <div id="vector-equilibrium" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
@@ -856,12 +888,13 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
-          <DbEntries letter="V" dbByLetter={dbByLetter} />
+          <DbEntries letter="V" dbByLetter={dbByLetter} afterTerm="Vector Equilibrium" />
         </section>
 
         {/* W */}
         <section>
           <h2 className="font-serif text-2xl text-[#b8862a] mt-10 mb-4">W</h2>
+          <DbEntries letter="W" dbByLetter={dbByLetter} beforeTerm="Whitehead, Alfred North" />
           {/* Whitehead, Alfred North */}
           <div id="whitehead-alfred-north" className="border-t border-[#ddd5c8] pt-6 pb-6">
             <h3 className="font-serif text-xl font-semibold text-[#0f2240] mb-3">
@@ -895,7 +928,7 @@ export default async function BackgroundPage() {
               </p>
             </div>
           </div>
-          <DbEntries letter="W" dbByLetter={dbByLetter} />
+          <DbEntries letter="W" dbByLetter={dbByLetter} afterTerm="Whitehead, Alfred North" />
         </section>
 
         <DbLetterSections letters={["X", "Y", "Z"]} dbByLetter={dbByLetter} />

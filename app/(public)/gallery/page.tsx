@@ -1,11 +1,32 @@
 import type { Metadata } from "next";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { createPublicClient } from "@/lib/supabase/server";
+import type { GalleryItem } from "@/types";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Gallery",
   description: "A visual gallery of Ffellonics geometric work — diagrams, models, and mathematical art.",
 };
 
-export default function GalleryPage() {
+async function getGalleryItems(): Promise<GalleryItem[]> {
+  try {
+    const supabase = createPublicClient();
+    const { data } = await supabase
+      .from("gallery_items")
+      .select("*")
+      .order("display_order", { ascending: true });
+    return (data ?? []) as GalleryItem[];
+  } catch {
+    return [];
+  }
+}
+
+export default async function GalleryPage() {
+  const items = await getGalleryItems();
+
   return (
     <article className="mx-4 sm:mx-[100px] py-16">
       <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-3">
@@ -14,100 +35,29 @@ export default function GalleryPage() {
       <div className="w-10 h-[1px] bg-[#b8862a] mb-10" />
 
       <div className="space-y-20">
-
-        {/* Platonic Solids Composition 51 */}
-        <div className="border-t border-[#ddd5c8] pt-10">
-          <img
-            src="/gallery/platonic-solids-composition-51.svg"
-            alt="Platonic Solids Composition 51"
-            className="w-full max-w-[720px] mx-auto block mb-8"
-          />
-          <div className="max-w-[680px] mx-auto">
-            <h2 className="font-serif text-2xl text-[#0f2240] mb-4">
-              Platonic Solids — Composition 51
-            </h2>
-            <div className="font-serif text-[#333] leading-relaxed space-y-4">
-              <p>
-                The Platonic solids are five special three-dimensional shapes that are as perfectly
-                balanced and symmetrical as any solid object can be. Every face is exactly the same
-                regular polygon, every edge is the same length, and the same number of faces meet at
-                every corner. Because of this, you can turn or flip the shape so that any face, edge
-                or corner lands exactly where another one was.
-              </p>
-              <p>There are only five of them:</p>
-              <ul className="list-disc list-inside space-y-1 pl-2">
-                <li>the tetrahedron (a pyramid made of four equal triangles),</li>
-                <li>the cube (six equal squares),</li>
-                <li>the octahedron (eight equal triangles),</li>
-                <li>the dodecahedron (twelve equal pentagons),</li>
-                <li>the icosahedron (twenty equal triangles).</li>
-              </ul>
-              <p>
-                No other solid shape works this way. Each one has a matching &ldquo;partner&rdquo;
-                shape (its dual) that fits together with it perfectly, and the tetrahedron is its own
-                partner.
-              </p>
-              <p>
-                What makes them special is their extreme symmetry. You can rotate them in many
-                different ways and they still look identical. No other everyday solid objects have
-                this level of perfect balance.
-              </p>
-              <p>
-                The ancient philosopher Plato linked them to the basic elements of the world: the
-                tetrahedron to fire, the cube to earth, the octahedron to air, the icosahedron to
-                water, and the dodecahedron to the whole cosmos. Even today these shapes show up
-                wherever nature or design needs the highest possible symmetry — inside viruses,
-                crystals and certain carbon molecules.
-              </p>
-              <p>
-                In short, the Platonic solids are the purest examples of three-dimensional symmetry
-                that exist.
-              </p>
+        {items.map(item => (
+          <div key={item.id} className="border-t border-[#ddd5c8] pt-10">
+            <img
+              src={item.image_url}
+              alt={item.alt_text || item.title}
+              className="w-full max-w-[720px] mx-auto block mb-8"
+            />
+            <div className="max-w-[680px] mx-auto">
+              <h2 className="font-serif text-2xl text-[#0f2240] mb-4">{item.title}</h2>
+              {item.body && (
+                <div className="font-serif text-[#333] leading-relaxed space-y-4
+                  [&_ul]:list-disc [&_ul]:list-inside [&_ul]:space-y-1 [&_ul]:pl-2
+                  [&_ol]:list-decimal [&_ol]:list-inside [&_ol]:space-y-1 [&_ol]:pl-2
+                  [&_strong]:font-semibold [&_strong]:text-[#0f2240]
+                  [&_em]:italic
+                  [&_h2]:font-serif [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-[#0f2240] [&_h2]:mt-6 [&_h2]:mb-2
+                  [&_a]:text-[#b8862a] [&_a]:hover:underline">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.body}</ReactMarkdown>
+                </div>
+              )}
             </div>
           </div>
-        </div>
-
-        {/* Composition 56 */}
-        <div className="border-t border-[#ddd5c8] pt-10">
-          <img
-            src="/gallery/composition-56.png"
-            alt="Composition 56 — Platonic Solid Duals"
-            className="w-full max-w-[720px] mx-auto block mb-8"
-          />
-          <div className="max-w-[680px] mx-auto">
-            <h2 className="font-serif text-2xl text-[#0f2240] mb-4">
-              Composition 56
-            </h2>
-            <div className="font-serif text-[#333] leading-relaxed space-y-4">
-              <p>
-                To understand the full potential of the Platonic solids, you need to see that they
-                are not simply five separate shapes. They form two linked series of three duals each.
-              </p>
-              <p>
-                One series is the tetrahedron, the octahedron and the icosahedron. The other is the
-                tetrahedron (which is dual to itself), the cube and the dodecahedron.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Composition 555 */}
-        <div className="border-t border-[#ddd5c8] pt-10">
-          <img
-            src="/gallery/composition-555.png"
-            alt="Sphere arrangements underlying the Platonic Solids"
-            className="w-full max-w-[720px] mx-auto block mb-8"
-          />
-          <div className="max-w-[680px] mx-auto">
-            <h2 className="font-serif text-2xl text-[#0f2240] mb-4">
-              Composition 555
-            </h2>
-            <div className="font-serif text-[#333] leading-relaxed">
-              <p>The sphere arrangements on which the Platonic Solids are based.</p>
-            </div>
-          </div>
-        </div>
-
+        ))}
       </div>
     </article>
   );

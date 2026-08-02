@@ -1,3 +1,13 @@
+export interface GalleryItem {
+  id: string;
+  title: string;
+  image_url: string;
+  alt_text: string;
+  body: string;
+  display_order: number;
+  created_at: string;
+}
+
 export interface GlossaryEntry {
   id: string;
   term: string;

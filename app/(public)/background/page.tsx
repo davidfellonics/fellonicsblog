@@ -79,6 +79,34 @@ function DbLetterSections({ letters, dbByLetter }: { letters: string[]; dbByLett
   );
 }
 
+const STATIC_ENTRIES: { label: string; anchor: string }[] = [
+  { label: "Algorithm", anchor: "algorithm" },
+  { label: "Bohr, Niels", anchor: "bohr-niels" },
+  { label: "Canalicchio Duals", anchor: "canalicchio-duals" },
+  { label: "Dissipative Structure", anchor: "dissipative-structure" },
+  { label: "Euclid", anchor: "euclid" },
+  { label: "Ffellonic Form", anchor: "ffellonic-form" },
+  { label: "Ffellonics", anchor: "ffellonics" },
+  { label: "First Touch", anchor: "first-touch" },
+  { label: "Free Energy Principle", anchor: "free-energy-principle" },
+  { label: "Friston, Karl", anchor: "friston-karl" },
+  { label: "Fuller, R. Buckminster", anchor: "fuller-r-buckminster" },
+  { label: "Gibbs Free Energy", anchor: "gibbs-free-energy" },
+  { label: "Kauffman, Stuart", anchor: "kauffman-stuart" },
+  { label: "Levin, Michael", anchor: "levin-michael" },
+  { label: "Ontology", anchor: "ontology" },
+  { label: "Plato", anchor: "plato" },
+  { label: "Platonic Solids", anchor: "platonic-solids" },
+  { label: "Prigogine, Ilya", anchor: "prigogine-ilya" },
+  { label: "Relational Emergence", anchor: "relational-emergence" },
+  { label: "Relational Self-Assembly", anchor: "relational-self-assembly" },
+  { label: "Symmetric Nearest-Neighbour Attachment", anchor: "symmetric-nearest-neighbour-attachment" },
+  { label: "Symmetry", anchor: "symmetry" },
+  { label: "Teleology", anchor: "teleology" },
+  { label: "Vector Equilibrium", anchor: "vector-equilibrium" },
+  { label: "Whitehead, Alfred North", anchor: "whitehead-alfred-north" },
+];
+
 async function getGlossaryEntries(): Promise<GlossaryEntry[]> {
   try {
     const supabase = createPublicClient();
@@ -101,6 +129,19 @@ export default async function BackgroundPage() {
     if (!dbByLetter[letter]) dbByLetter[letter] = [];
     dbByLetter[letter].push(entry);
   }
+
+  const dbIndexEntries = dbEntries.map(e => ({ label: e.term, anchor: slugify(e.term) }));
+  const allIndexEntries = [...STATIC_ENTRIES, ...dbIndexEntries].sort((a, b) =>
+    a.label.localeCompare(b.label)
+  );
+  const indexByLetter: Record<string, { label: string; anchor: string }[]> = {};
+  for (const entry of allIndexEntries) {
+    const letter = entry.label[0].toUpperCase();
+    if (!indexByLetter[letter]) indexByLetter[letter] = [];
+    indexByLetter[letter].push(entry);
+  }
+  const indexLetters = Object.keys(indexByLetter).sort();
+
   return (
     <article className="max-w-[680px] mx-auto px-4 sm:px-6 py-16">
       <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-5">
@@ -108,9 +149,29 @@ export default async function BackgroundPage() {
       </h1>
       <div className="w-10 h-[1px] bg-[#b8862a] mb-8" />
 
-      <p className="font-serif italic text-[#7c6f64] mb-10">
+      <p className="font-serif italic text-[#7c6f64] mb-8">
         A glossary of people and subjects mentioned in the essays, arranged alphabetically.
       </p>
+
+      <nav className="mb-12 border border-[#ddd5c8] rounded-lg p-5 bg-[#faf8f5]">
+        {indexLetters.map(letter => (
+          <div key={letter} className="mb-2 leading-relaxed">
+            <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-[#b8862a] inline-block w-5 shrink-0 mt-0.5 align-top">{letter}</span>
+            <span className="inline">
+              {indexByLetter[letter].map((entry, i) => (
+                <span key={entry.anchor}>
+                  <a href={`#${entry.anchor}`} className="font-serif text-sm text-[#0f2240] hover:text-[#b8862a] hover:underline transition-colors">
+                    {entry.label}
+                  </a>
+                  {i < indexByLetter[letter].length - 1 && (
+                    <span className="text-[#c5b8aa] mx-2">·</span>
+                  )}
+                </span>
+              ))}
+            </span>
+          </div>
+        ))}
+      </nav>
 
       <div className="space-y-10">
 

@@ -15,6 +15,26 @@ export default function GlossaryForm({ initialEntries }: Props) {
   const [status, setStatus] = useState<"idle" | "saving" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [entries, setEntries] = useState<GlossaryEntry[]>(initialEntries);
+  const [editingId, setEditingId] = useState<string | null>(null);
+
+  function startEdit(entry: GlossaryEntry) {
+    setEditingId(entry.id);
+    setTerm(entry.term);
+    setDateRange(entry.date_range ?? "");
+    setBody(entry.body);
+    setStatus("idle");
+    setErrorMsg("");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function cancelEdit() {
+    setEditingId(null);
+    setTerm("");
+    setDateRange("");
+    setBody("");
+    setStatus("idle");
+    setErrorMsg("");
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -22,10 +42,11 @@ export default function GlossaryForm({ initialEntries }: Props) {
     setStatus("saving");
     setErrorMsg("");
 
+    const isEditing = editingId !== null;
     const res = await fetch("/api/glossary", {
-      method: "POST",
+      method: isEditing ? "PUT" : "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ term: term.trim(), date_range: dateRange.trim() || null, body: body.trim() }),
+      body: JSON.stringify({ id: editingId, term: term.trim(), date_range: dateRange.trim() || null, body: body.trim() }),
     });
 
     if (!res.ok) {
@@ -37,11 +58,14 @@ export default function GlossaryForm({ initialEntries }: Props) {
 
     const { entry } = await res.json();
     setEntries((prev) =>
-      [entry as GlossaryEntry, ...prev].sort((a, b) => a.term.localeCompare(b.term))
+      isEditing
+        ? prev.map(e => e.id === entry.id ? entry as GlossaryEntry : e).sort((a, b) => a.term.localeCompare(b.term))
+        : [entry as GlossaryEntry, ...prev].sort((a, b) => a.term.localeCompare(b.term))
     );
     setTerm("");
     setDateRange("");
     setBody("");
+    setEditingId(null);
     setStatus("success");
     setTimeout(() => setStatus("idle"), 3000);
   }
@@ -59,7 +83,9 @@ export default function GlossaryForm({ initialEntries }: Props) {
     <div className="space-y-10">
       {/* Data entry form */}
       <form onSubmit={handleSubmit} className="bg-white border border-[#e5e7eb] rounded-lg p-6 space-y-5">
-        <h2 className="text-lg font-semibold font-sans text-[#111111]">New Glossary Entry</h2>
+        <h2 className="text-lg font-semibold font-sans text-[#111111]">
+          {editingId ? "Edit Glossary Entry" : "New Glossary Entry"}
+        </h2>
 
         <div className="space-y-1">
           <label className="block text-sm font-medium font-sans text-[#374151]">
@@ -116,10 +142,17 @@ export default function GlossaryForm({ initialEntries }: Props) {
 
         <div className="flex items-center gap-4">
           <Button type="submit" disabled={status === "saving"}>
-            {status === "saving" ? "Saving…" : "Add Entry"}
+            {status === "saving" ? "Saving…" : editingId ? "Update Entry" : "Add Entry"}
           </Button>
+          {editingId && (
+            <button type="button" onClick={cancelEdit} className="text-sm text-[#6b7280] font-sans hover:text-[#111] transition-colors">
+              Cancel
+            </button>
+          )}
           {status === "success" && (
-            <span className="text-sm text-green-600 font-sans">Entry added successfully.</span>
+            <span className="text-sm text-green-600 font-sans">
+              {editingId ? "Entry updated." : "Entry added successfully."}
+            </span>
           )}
           {status === "error" && (
             <span className="text-sm text-red-600 font-sans">{errorMsg}</span>
@@ -152,13 +185,22 @@ export default function GlossaryForm({ initialEntries }: Props) {
                     {entry.body.slice(0, 120)}…
                   </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => handleDelete(entry.id)}
-                  className="flex-shrink-0 text-xs text-red-500 hover:text-red-700 font-sans transition-colors"
-                >
-                  Delete
-                </button>
+                <div className="flex gap-3 flex-shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => startEdit(entry)}
+                    className="text-xs text-[#1a3a5c] hover:text-[#b8862a] font-sans transition-colors"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(entry.id)}
+                    className="text-xs text-red-500 hover:text-red-700 font-sans transition-colors"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             ))}
           </div>

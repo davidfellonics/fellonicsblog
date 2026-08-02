@@ -22,6 +22,27 @@ export async function POST(request: NextRequest) {
   return NextResponse.json({ entry: data });
 }
 
+export async function PUT(request: NextRequest) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const { id, term, date_range, body } = await request.json();
+  if (!id || !term || !body) return NextResponse.json({ error: "id, term and body are required" }, { status: 400 });
+
+  const { data, error } = await supabase
+    .from("glossary_entries")
+    .update({ term, date_range: date_range || null, body } as never)
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  revalidatePath("/background");
+  return NextResponse.json({ entry: data });
+}
+
 export async function DELETE(request: NextRequest) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();

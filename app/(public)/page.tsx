@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { createPublicClient } from "@/lib/supabase/server";
-import HomePosts from "@/components/public/HomePosts";
-import type { PostWithTags, Post, Tag, Profile } from "@/types";
+import type { Profile } from "@/types";
 
 export const revalidate = 3600; // 1 hour — posts don't change every minute
 
@@ -38,42 +38,6 @@ export const metadata: Metadata = {
   },
 };
 
-async function getPosts(): Promise<PostWithTags[]> {
-  try {
-  const supabase = createPublicClient();
-
-  const { data: rawPosts, error } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("status", "published")
-    .order("published_at", { ascending: false });
-
-  if (error || !rawPosts) return [];
-
-  const posts = rawPosts as Post[];
-  const postIds = posts.map((p) => p.id);
-  if (postIds.length === 0) return posts.map((p) => ({ ...p, tags: [], author: null }));
-
-  const { data: postTags } = await supabase
-    .from("post_tags")
-    .select("post_id, tags(*)")
-    .in("post_id", postIds);
-
-  type PTRow = { post_id: string; tags: Tag | null };
-  const typedPostTags = (postTags ?? []) as PTRow[];
-
-  return posts.map((post) => {
-    const tags: Tag[] = typedPostTags
-      .filter((pt) => pt.post_id === post.id)
-      .map((pt) => pt.tags)
-      .filter((t): t is Tag => t !== null);
-    return { ...post, tags, author: null };
-  });
-  } catch {
-    return [];
-  }
-}
-
 async function getAuthor(): Promise<Profile | null> {
   try {
   const supabase = createPublicClient();
@@ -89,7 +53,7 @@ async function getAuthor(): Promise<Profile | null> {
 }
 
 export default async function HomePage() {
-  const [posts, author] = await Promise.all([getPosts(), getAuthor()]);
+  const author = await getAuthor();
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
   return (
@@ -131,10 +95,47 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Posts */}
-      <div className="mx-4 sm:mx-[100px] py-12">
-        <HomePosts posts={posts} />
-      </div>
+      {/* Section Cards */}
+      <section className="mx-4 sm:mx-[100px] py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            {
+              href: "/about",
+              title: "About",
+              body: "The philosophy and motivation behind Ffellonics — a personal inquiry into geometry as a language of form and thought.",
+            },
+            {
+              href: "/essays",
+              title: "Essays",
+              body: "Academic essays and personal reflections on topology, polyhedra, tessellation, and the mathematics of form.",
+            },
+            {
+              href: "/background",
+              title: "Glossary",
+              body: "A growing lexicon of geometric and philosophical terms — from emergence and symmetry to Platonic solids and beyond.",
+            },
+            {
+              href: "/gallery",
+              title: "Gallery",
+              body: "Visual explorations of geometric form: drawings, models, and works that bridge mathematics and art.",
+            },
+          ].map((card) => (
+            <Link
+              key={card.href}
+              href={card.href}
+              className="group block border border-[#ddd5c8] bg-white hover:border-[#b8862a] transition-colors duration-200 p-7"
+            >
+              <h2 className="font-serif text-xl text-[#0f2240] mb-3 group-hover:text-[#b8862a] transition-colors duration-200">
+                {card.title}
+              </h2>
+              <div className="w-6 h-[1px] bg-[#b8862a] mb-4" />
+              <p className="font-serif italic text-[#7c6f64] text-sm leading-relaxed">
+                {card.body}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {/* JSON-LD for site */}
       <script

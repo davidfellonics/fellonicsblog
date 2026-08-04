@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { createPublicClient } from "@/lib/supabase/server";
 import type { GlossaryEntry } from "@/types";
 
@@ -18,23 +20,6 @@ function slugify(term: string) {
     .replace(/-+/g, "-");
 }
 
-function renderWithLinks(text: string): React.ReactNode[] {
-  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
-  const parts: React.ReactNode[] = [];
-  let last = 0;
-  let m: RegExpExecArray | null;
-  while ((m = regex.exec(text)) !== null) {
-    if (m.index > last) parts.push(text.slice(last, m.index));
-    parts.push(
-      <a key={m.index} href={m[2]} className="text-[#b8862a] hover:underline">
-        {m[1]}
-      </a>
-    );
-    last = m.index + m[0].length;
-  }
-  if (last < text.length) parts.push(text.slice(last));
-  return parts;
-}
 
 function DbEntries({ letter, dbByLetter, afterTerm, beforeTerm }: {
   letter: string;
@@ -55,8 +40,16 @@ function DbEntries({ letter, dbByLetter, afterTerm, beforeTerm }: {
               <span className="text-sm font-sans font-normal text-[#7c6f64] ml-2">{entry.date_range}</span>
             )}
           </h3>
-          <div className="font-serif text-[#333] leading-relaxed space-y-3">
-            {entry.body.split("\n\n").map((para, i) => <p key={i}>{renderWithLinks(para)}</p>)}
+          <div className="font-serif text-[#333] leading-relaxed
+            [&_p]:mb-3
+            [&_strong]:font-semibold [&_strong]:text-[#0f2240]
+            [&_em]:italic
+            [&_a]:text-[#b8862a] [&_a]:hover:underline
+            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1
+            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-1">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {entry.body}
+            </ReactMarkdown>
           </div>
         </div>
       ))}

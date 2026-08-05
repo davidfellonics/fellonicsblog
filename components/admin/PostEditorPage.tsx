@@ -36,6 +36,9 @@ export default function PostEditorPage({ post, allTags, authorId }: PostEditorPa
   const [metaTitle, setMetaTitle] = useState(post?.meta_title ?? "");
   const [metaDescription, setMetaDescription] = useState(post?.meta_description ?? "");
   const [isPublished, setIsPublished] = useState(post?.status === "published");
+  const [publishedAt, setPublishedAt] = useState(
+    post?.published_at ? post.published_at.slice(0, 16) : ""
+  );
   const [postType, setPostType] = useState<"academic" | "reflection">(post?.post_type ?? "academic");
   const [selectedTags, setSelectedTags] = useState<Tag[]>(post?.tags ?? []);
   const [newTagInput, setNewTagInput] = useState("");
@@ -119,7 +122,7 @@ export default function PostEditorPage({ post, allTags, authorId }: PostEditorPa
       author_id: authorId,
       post_type: postType,
       status: (publish ? "published" : "draft") as "published" | "draft",
-      published_at: publish ? (post?.published_at ?? new Date().toISOString()) : null,
+      published_at: publish ? (publishedAt ? new Date(publishedAt).toISOString() : new Date().toISOString()) : null,
       reading_time_minutes: calculateReadingTime(content),
       meta_title: metaTitle.trim() || null,
       meta_description: metaDescription.trim() || null,
@@ -310,6 +313,18 @@ export default function PostEditorPage({ post, allTags, authorId }: PostEditorPa
             rows={2}
             maxLength={160}
           />
+        </div>
+
+        <div className="space-y-1">
+          <Label htmlFor="published-at">Publication date</Label>
+          <Input
+            id="published-at"
+            type="datetime-local"
+            value={publishedAt}
+            onChange={(e) => setPublishedAt(e.target.value)}
+            className="text-sm"
+          />
+          <p className="text-xs text-[#6b7280]">Leave blank to use today&apos;s date when publishing.</p>
         </div>
 
         <div className="flex items-center gap-3">

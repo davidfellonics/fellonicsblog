@@ -18,7 +18,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { createClient } from "@/lib/supabase/client";
-import { formatDate } from "@/lib/utils/formatDate";
+import { formatDateTime } from "@/lib/utils/formatDate";
 import type { Post } from "@/types";
 
 type SortField = "title" | "status" | "published_at";
@@ -73,7 +73,9 @@ export default function PostTable({ posts: initialPosts }: PostTableProps) {
     } else if (sortField === "status") {
       cmp = (a.status ?? "").localeCompare(b.status ?? "");
     } else {
-      cmp = (a.published_at ?? "").localeCompare(b.published_at ?? "");
+      const aTime = a.published_at ? new Date(a.published_at).getTime() : 0;
+      const bTime = b.published_at ? new Date(b.published_at).getTime() : 0;
+      cmp = aTime - bTime;
     }
     return sortDir === "asc" ? cmp : -cmp;
   });
@@ -142,7 +144,7 @@ export default function PostTable({ posts: initialPosts }: PostTableProps) {
                     </Badge>
                   </td>
                   <td className="px-4 py-3 hidden md:table-cell text-[#6b7280]">
-                    {post.published_at ? formatDate(post.published_at) : "—"}
+                    {post.published_at ? formatDateTime(post.published_at) : "—"}
                   </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex items-center justify-end gap-2">

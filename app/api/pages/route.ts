@@ -16,6 +16,11 @@ export async function PUT(request: NextRequest) {
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-  revalidatePath("/about");
+  const pathMap: Record<string, string> = {
+    about: "/about",
+    levels: "/levels",
+  };
+  const path = pathMap[key] ?? `/${key}`;
+  revalidatePath(path);
   return NextResponse.json({ ok: true });
 }

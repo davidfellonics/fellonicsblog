@@ -52,6 +52,20 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/background",
+        destination: "/glossary",
+        permanent: true,
+      },
+      {
+        source: "/background/:hash*",
+        destination: "/glossary/:hash*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

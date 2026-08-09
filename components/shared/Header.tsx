@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { href: "/about", label: "About" },
   { href: "/essays", label: "Essays" },
   { href: "/levels", label: "Ffellonic Levels" },
-  { href: "/background", label: "Glossary" },
+  { href: "/glossary", label: "Glossary" },
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ];

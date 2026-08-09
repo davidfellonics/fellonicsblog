@@ -110,7 +110,7 @@ export default async function HomePage() {
               body: "Academic essays and personal reflections on topology, polyhedra, tessellation, and the mathematics of form.",
             },
             {
-              href: "/background",
+              href: "/glossary",
               title: "Glossary",
               body: "A growing lexicon of geometric and philosophical terms — from emergence and symmetry to Platonic solids and beyond.",
             },

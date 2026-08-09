@@ -12,10 +12,10 @@ const STATIC_PAGES = [
       "Ffellonics is a philosophical and geometric model of relational self-assembly, inspired by physics, sphere-packing mathematics, and ancient metaphysics.",
   },
   {
-    href: "/background",
-    title: "Background",
+    href: "/glossary",
+    title: "Glossary",
     excerpt:
-      "A fresh look at the Platonic solids — why the standard definition falls short, and how Ffellonic geometry reframes them as milestones in a 12-level developmental hierarchy.",
+      "A growing lexicon of geometric and philosophical terms — from emergence and symmetry to Platonic solids and beyond.",
   },
   {
     href: "/contact",

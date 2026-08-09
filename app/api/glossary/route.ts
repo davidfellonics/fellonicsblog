@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-  revalidatePath("/background");
+  revalidatePath("/glossary");
   return NextResponse.json({ entry: data });
 }
 
@@ -39,7 +39,7 @@ export async function PUT(request: NextRequest) {
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-  revalidatePath("/background");
+  revalidatePath("/glossary");
   return NextResponse.json({ entry: data });
 }
 
@@ -54,6 +54,6 @@ export async function DELETE(request: NextRequest) {
   const { error } = await supabase.from("glossary_entries").delete().eq("id", id);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-  revalidatePath("/background");
+  revalidatePath("/glossary");
   return NextResponse.json({ ok: true });
 }

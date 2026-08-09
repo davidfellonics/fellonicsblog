@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, FilePlus, MessageSquare, BookOpen, FileText, Image, LogOut } from "lucide-react";
+import { LayoutDashboard, FilePlus, MessageSquare, BookOpen, FileText, Image, Layers, LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +26,7 @@ export default function AdminSidebar({ pendingComments = 0 }: AdminSidebarProps)
     { href: "/admin/comments", label: "Comments", icon: MessageSquare, badge: pendingComments },
     { href: "/admin/glossary", label: "Glossary Data", icon: BookOpen },
     { href: "/admin/about", label: "About Page", icon: FileText },
+    { href: "/admin/levels", label: "Ffellonic Levels", icon: Layers },
     { href: "/admin/gallery-items", label: "Gallery Items", icon: Image },
   ];
 

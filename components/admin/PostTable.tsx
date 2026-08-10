@@ -83,8 +83,14 @@ export default function PostTable({ posts: initialPosts }: PostTableProps) {
   async function handleDelete(id: string) {
     setDeleting(id);
     const supabase = createClient();
+    const post = posts.find((p) => p.id === id);
     await supabase.from("posts").delete().eq("id", id);
     setPosts((prev) => prev.filter((p) => p.id !== id));
+    await fetch("/api/revalidate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug: post?.slug }),
+    }).catch(() => {});
     setDeleting(null);
     router.refresh();
   }

@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
   }
 
   revalidatePath("/");
+  revalidatePath("/essays");
   if (body.slug) revalidatePath(`/${body.slug}`);
   if (body.path) revalidatePath(body.path);
 

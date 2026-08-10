@@ -43,8 +43,9 @@ export default function PostCard({ post, priority = false }: PostCardProps) {
           </p>
         )}
         <div className="flex flex-wrap items-center gap-x-1.5 text-[10px] uppercase tracking-widest text-[#9c8c7c]">
+          <span className="text-[#7c6f64]">David Fell</span>
           {post.published_at && (
-            <time dateTime={post.published_at}>{formatDate(post.published_at)}</time>
+            <><span>·</span><time dateTime={post.published_at}>{formatDate(post.published_at)}</time></>
           )}
           {post.reading_time_minutes && (
             <span>· {post.reading_time_minutes} min</span>

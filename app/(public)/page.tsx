@@ -9,32 +9,34 @@ export const revalidate = 3600; // 1 hour — posts don't change every minute
 const siteUrlForMeta = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export const metadata: Metadata = {
-  title: "FFellonics — Exploring Geometry",
+  title: {
+    absolute: "Ffellonics: The Geometry of Relational Self-Assembly",
+  },
   description:
-    "Exploring geometry — topology, tessellation, polyhedra, non-Euclidean geometry, sacred geometry, and mathematical art.",
+    "Ffellonics is a geometric framework showing how identical spheres in contact produce a precise 12-level hierarchy — from a simple dyad to full FCC/HCP close-packing — that mirrors the structure of nature itself.",
   alternates: {
     canonical: siteUrlForMeta,
   },
   openGraph: {
-    title: "FFellonics — Exploring Geometry",
+    title: "Ffellonics: The Geometry of Relational Self-Assembly",
     description:
-      "Exploring geometry — topology, tessellation, polyhedra, non-Euclidean geometry, sacred geometry, and mathematical art.",
+      "A geometric framework showing how identical spheres in contact produce a precise 12-level hierarchy that mirrors the structure of nature itself.",
     url: siteUrlForMeta,
     type: "website",
     images: [
       {
-        url: `${siteUrlForMeta}/api/og?title=FFellonics%20%E2%80%94%20Exploring%20Geometry`,
+        url: `${siteUrlForMeta}/api/og?title=Ffellonics%3A%20The%20Geometry%20of%20Relational%20Self-Assembly`,
         width: 1200,
         height: 630,
-        alt: "FFellonics — Exploring Geometry",
+        alt: "Ffellonics: The Geometry of Relational Self-Assembly",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FFellonics — Exploring Geometry",
-    description: "Exploring geometry — topology, tessellation, polyhedra, non-Euclidean geometry, sacred geometry, and mathematical art.",
-    images: [`${siteUrlForMeta}/api/og?title=FFellonics%20%E2%80%94%20Exploring%20Geometry`],
+    title: "Ffellonics: The Geometry of Relational Self-Assembly",
+    description: "A geometric framework showing how identical spheres in contact produce a precise 12-level hierarchy that mirrors the structure of nature itself.",
+    images: [`${siteUrlForMeta}/api/og?title=Ffellonics%3A%20The%20Geometry%20of%20Relational%20Self-Assembly`],
   },
 };
 
@@ -137,21 +139,33 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* JSON-LD for site */}
+      {/* JSON-LD: WebSite + Person */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Blog",
-            name: "FFellonics",
-            description: "Exploring geometry, one post at a time.",
-            url: siteUrl,
-            publisher: {
-              "@type": "Organization",
-              name: "FFellonics",
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Ffellonics",
+              url: siteUrl,
+              description: "A geometric framework showing how identical spheres in contact produce a precise 12-level hierarchy that mirrors the structure of nature itself.",
+              author: { "@type": "Person", name: "David Fell" },
             },
-          }),
+            {
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "David Fell",
+              jobTitle: "Independent Researcher",
+              description: "Creator of Ffellonics, a 12-level geometric hierarchy derived from sphere-packing mathematics, developed over more than 15 years.",
+              url: `${siteUrl}/about`,
+              sameAs: ["https://x.com/ffellonicforms"],
+              knowsAbout: [
+                "Sphere packing", "FCC/HCP close-packing", "Geometric hierarchy",
+                "Emergence", "Relational self-assembly", "Polyhedra", "Topology",
+              ],
+            },
+          ]),
         }}
       />
     </>

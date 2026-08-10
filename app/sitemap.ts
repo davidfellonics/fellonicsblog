@@ -24,8 +24,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [
-    { url: siteUrl, lastModified: new Date(), changeFrequency: "daily", priority: 1 },
-    ...postUrls,
+  const staticUrls: MetadataRoute.Sitemap = [
+    { url: siteUrl,                   lastModified: new Date(), changeFrequency: "weekly",  priority: 1.0 },
+    { url: `${siteUrl}/about`,        lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${siteUrl}/essays`,       lastModified: new Date(), changeFrequency: "weekly",  priority: 0.9 },
+    { url: `${siteUrl}/levels`,       lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${siteUrl}/glossary`,     lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${siteUrl}/gallery`,      lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${siteUrl}/contact`,      lastModified: new Date(), changeFrequency: "yearly",  priority: 0.4 },
   ];
+
+  return [...staticUrls, ...postUrls];
 }

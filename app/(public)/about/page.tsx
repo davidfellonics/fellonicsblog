@@ -9,7 +9,9 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Ffellonics is a philosophical and geometric model of relational self-assembly, inspired by physics, sphere-packing mathematics, and ancient metaphysics.",
+  description: "Ffellonics is a philosophical and geometric model of relational self-assembly, inspired by physics, sphere-packing mathematics, and ancient metaphysics. Created by David Fell, independent researcher, Leicestershire, UK.",
+  alternates: { canonical: "/about" },
+  twitter: { card: "summary_large_image" },
 };
 
 async function getAboutContent(): Promise<string> {
@@ -32,10 +34,13 @@ async function getAuthor(): Promise<Profile | null> {
   }
 }
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ffell.com";
+
 export default async function AboutPage() {
   const [content, author] = await Promise.all([getAboutContent(), getAuthor()]);
 
   return (
+    <>
     <article className="max-w-[680px] mx-auto px-4 sm:px-6 py-16">
       <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-5">
         About
@@ -69,5 +74,26 @@ export default async function AboutPage() {
         {author?.bio && <p className="mt-6">{author.bio}</p>}
       </div>
     </article>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          url: `${siteUrl}/about`,
+          name: "About — Ffellonics",
+          description: "Ffellonics is a geometric framework for relational self-assembly created by David Fell.",
+          mainEntity: {
+            "@type": "Person",
+            name: "David Fell",
+            jobTitle: "Independent Researcher",
+            address: { "@type": "PostalAddress", addressRegion: "Leicestershire", addressCountry: "GB" },
+            url: `${siteUrl}/about`,
+            sameAs: ["https://x.com/ffellonicforms"],
+          },
+        }),
+      }}
+    />
+    </>
   );
 }

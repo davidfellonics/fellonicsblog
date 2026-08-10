@@ -134,8 +134,8 @@ export default async function PostPage({ params }: PageProps) {
     dateModified: formatDateISO(post.updated_at),
     image: post.og_image_url ?? post.cover_image_url ?? undefined,
     author: post.author
-      ? { "@type": "Person", name: post.author.full_name }
-      : { "@type": "Organization", name: "FFellonics" },
+      ? { "@type": "Person", name: post.author.full_name, url: `${siteUrl}/about` }
+      : { "@type": "Person", name: "David Fell", url: `${siteUrl}/about`, sameAs: ["https://x.com/ffellonicforms"] },
     publisher: {
       "@type": "Organization",
       name: "FFellonics",
@@ -185,6 +185,14 @@ export default async function PostPage({ params }: PageProps) {
           {post.reading_time_minutes && (
             <span>· {post.reading_time_minutes} min read</span>
           )}
+        </div>
+
+        {/* Author byline */}
+        <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#7c6f64] mb-8">
+          <span>By</span>
+          <span className="text-[#0f2240] font-medium">
+            {post.author?.full_name ?? "David Fell"}
+          </span>
         </div>
 
         {/* Author bio */}

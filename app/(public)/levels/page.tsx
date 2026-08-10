@@ -7,8 +7,12 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Ffellonic Levels",
-  description: "The twelve levels of the Ffellonic sphere-packing hierarchy — from a simple dyad to full FCC/HCP close-packing.",
+  description: "The twelve levels of the Ffellonic sphere-packing hierarchy — from a simple dyad to full FCC/HCP close-packing. Each level adds one coordination shell, preserving maximum symmetry.",
+  alternates: { canonical: "/levels" },
+  twitter: { card: "summary_large_image" },
 };
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ffell.com";
 
 async function getLevelsContent(): Promise<string> {
   try {
@@ -24,6 +28,7 @@ export default async function LevelsPage() {
   const content = await getLevelsContent();
 
   return (
+    <>
     <article className="max-w-[680px] mx-auto px-4 sm:px-6 py-16">
       <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-5">
         Ffellonic Levels
@@ -52,5 +57,30 @@ export default async function LevelsPage() {
         </p>
       )}
     </article>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ScholarlyArticle",
+          name: "Ffellonic Levels",
+          description: "The twelve levels of the Ffellonic sphere-packing hierarchy, from a simple dyad (k=1) to full FCC/HCP close-packing (k=12).",
+          url: `${siteUrl}/levels`,
+          author: {
+            "@type": "Person",
+            name: "David Fell",
+            url: `${siteUrl}/about`,
+            sameAs: ["https://x.com/ffellonicforms"],
+          },
+          publisher: { "@type": "Organization", name: "Ffellonics", url: siteUrl },
+          about: {
+            "@type": "Thing",
+            name: "Ffellonics",
+            description: "A 12-level geometric hierarchy derived from sphere-packing mathematics.",
+          },
+        }),
+      }}
+    />
+    </>
   );
 }

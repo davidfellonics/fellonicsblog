@@ -8,7 +8,9 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Glossary",
-  description: "A glossary of people and subjects mentioned in the Ffellonics essays, arranged alphabetically.",
+  description: "A glossary of geometric and philosophical terms used in Ffellonics — 49 defined terms spanning coordination number, emergence, symmetry, Platonic solids, FCC/HCP packing, and the thinkers behind them.",
+  alternates: { canonical: "/glossary" },
+  twitter: { card: "summary_large_image" },
 };
 
 function slugify(term: string) {
@@ -113,6 +115,8 @@ async function getGlossaryEntries(): Promise<GlossaryEntry[]> {
   }
 }
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ffell.com";
+
 export default async function BackgroundPage() {
   const dbEntries = await getGlossaryEntries();
 
@@ -136,6 +140,7 @@ export default async function BackgroundPage() {
   const indexLetters = Object.keys(indexByLetter).sort();
 
   return (
+    <>
     <article className="max-w-[680px] mx-auto px-4 sm:px-6 py-16">
       <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-5">
         Glossary
@@ -984,5 +989,31 @@ export default async function BackgroundPage() {
 
       </div>
     </article>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "DefinedTermSet",
+          name: "Ffellonics Glossary",
+          description: "A lexicon of geometric and philosophical terms used in Ffellonics, covering sphere packing, emergence, symmetry, and the thinkers behind the framework.",
+          url: `${siteUrl}/glossary`,
+          author: {
+            "@type": "Person",
+            name: "David Fell",
+            url: `${siteUrl}/about`,
+            sameAs: ["https://x.com/ffellonicforms"],
+          },
+          definedTerm: dbEntries.map(e => ({
+            "@type": "DefinedTerm",
+            name: e.term,
+            description: e.body.replace(/[#*[\]()]/g, "").trim().slice(0, 300),
+            url: `${siteUrl}/glossary#${slugify(e.term)}`,
+            inDefinedTermSet: `${siteUrl}/glossary`,
+          })),
+        }),
+      }}
+    />
+    </>
   );
 }

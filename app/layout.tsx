@@ -38,8 +38,13 @@ export const metadata: Metadata = {
     title: "Ffellonics",
   },
   openGraph: {
-    siteName: "FFellonics",
+    siteName: "Ffellonics",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@ffellonicforms",
+    creator: "@ffellonicforms",
   },
   robots: {
     index: true,

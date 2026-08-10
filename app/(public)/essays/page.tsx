@@ -7,7 +7,9 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Essays",
-  description: "Academic essays and personal reflections on Ffellonics — geometry, relational emergence, and the mathematics of form.",
+  description: "Academic essays and personal reflections on Ffellonics — geometry, relational emergence, and the mathematics of form. Written by David Fell, independent researcher.",
+  alternates: { canonical: "/essays" },
+  twitter: { card: "summary_large_image" },
 };
 
 async function getPosts(): Promise<PostWithTags[]> {

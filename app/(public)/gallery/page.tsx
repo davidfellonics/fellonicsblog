@@ -8,8 +8,12 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Gallery",
-  description: "A visual gallery of Ffellonics geometric work — diagrams, models, and mathematical art.",
+  description: "A visual gallery of Ffellonics geometric work — original diagrams, models, and mathematical art by David Fell exploring sphere-packing hierarchy and relational form.",
+  alternates: { canonical: "/gallery" },
+  twitter: { card: "summary_large_image" },
 };
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ffell.com";
 
 async function getGalleryItems(): Promise<GalleryItem[]> {
   try {
@@ -28,6 +32,7 @@ export default async function GalleryPage() {
   const items = await getGalleryItems();
 
   return (
+    <>
     <article className="mx-4 sm:mx-[100px] py-16">
       <h1 className="font-serif text-4xl sm:text-5xl text-[#0f2240] leading-tight tracking-tight mb-3">
         Gallery
@@ -60,5 +65,34 @@ export default async function GalleryPage() {
         ))}
       </div>
     </article>
+    {items.length > 0 && (
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ImageGallery",
+            name: "Ffellonics Gallery",
+            url: `${siteUrl}/gallery`,
+            author: {
+              "@type": "Person",
+              name: "David Fell",
+              url: `${siteUrl}/about`,
+              sameAs: ["https://x.com/ffellonicforms"],
+            },
+            hasPart: items.map(item => ({
+              "@type": "ImageObject",
+              name: item.title,
+              description: item.body ? item.body.replace(/[#*[\]()]/g, "").trim().slice(0, 200) : item.title,
+              contentUrl: item.image_url.startsWith("/") ? `${siteUrl}${item.image_url}` : item.image_url,
+              url: `${siteUrl}/gallery`,
+              creator: { "@type": "Person", name: "David Fell" },
+              copyrightHolder: { "@type": "Person", name: "David Fell" },
+            })),
+          }),
+        }}
+      />
+    )}
+    </>
   );
 }

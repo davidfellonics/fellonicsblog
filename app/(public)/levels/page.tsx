@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { createPublicClient } from "@/lib/supabase/server";
 
 export const revalidate = 3600;
@@ -47,7 +48,7 @@ export default async function LevelsPage() {
           [&_em]:italic
           [&_a]:text-[#b8862a] [&_a]:hover:underline
           [&_blockquote]:border-l-2 [&_blockquote]:border-[#b8862a] [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-[#7c6f64]">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
             {content}
           </ReactMarkdown>
         </div>
